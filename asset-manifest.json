@@ -1,13 +1,14 @@
 {
   "files": {
     "main.css": "/VocabBuilder/static/css/main.7acaea2f.css",
-    "main.js": "/VocabBuilder/static/js/main.88243bc2.js",
+    "main.js": "/VocabBuilder/static/js/main.65c810de.js",
+    "static/media/sprite.svg": "/VocabBuilder/static/media/sprite.4e1bd24b720a50b861115f441aad8d96.svg",
     "index.html": "/VocabBuilder/index.html",
     "main.7acaea2f.css.map": "/VocabBuilder/static/css/main.7acaea2f.css.map",
-    "main.88243bc2.js.map": "/VocabBuilder/static/js/main.88243bc2.js.map"
+    "main.65c810de.js.map": "/VocabBuilder/static/js/main.65c810de.js.map"
   },
   "entrypoints": [
     "static/css/main.7acaea2f.css",
-    "static/js/main.88243bc2.js"
+    "static/js/main.65c810de.js"
   ]
 }
