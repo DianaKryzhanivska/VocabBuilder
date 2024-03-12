@@ -1,13 +1,16 @@
 import React from "react";
 import {
   Desc,
+  Form,
   InputBox,
   InputWithIcon,
+  LoginLink,
   SubmitBtn,
   Title,
   Wrapper,
 } from "./RegisterForm.styled";
 import sprite from "../../../images/sprite.svg";
+import { NavLink } from "react-router-dom";
 
 const RegisterForm = () => {
   return (
@@ -18,7 +21,7 @@ const RegisterForm = () => {
           To start using our services, please fill out the registration form
           below. All fields are mandatory:
         </Desc>
-        <form>
+        <Form>
           <InputBox>
             <input type="text" placeholder="Name" />
             <input type="email" placeholder="Email" />
@@ -30,7 +33,10 @@ const RegisterForm = () => {
             </InputWithIcon>
           </InputBox>
           <SubmitBtn type="submit">Register</SubmitBtn>
-        </form>
+        </Form>
+        <LoginLink>
+          <NavLink to="/login">Login</NavLink>
+        </LoginLink>
       </Wrapper>
     </>
   );

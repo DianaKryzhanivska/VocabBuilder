@@ -4,6 +4,17 @@ export const Wrapper = styled.div`
   background: ${({ theme }) => theme.colors.lightGreen};
   border-radius: 25px 25px 0px 0px;
   padding: 32px 16px 57px;
+
+  @media only screen and (min-width: 768px) {
+    border-radius: 30px;
+    padding: 48px 64px;
+    width: 500px;
+    margin: 140px auto 98px;
+  }
+
+  @media only screen and (min-width: 1440px) {
+    margin: 0;
+  }
 `;
 
 export const Title = styled.h2`
@@ -13,6 +24,13 @@ export const Title = styled.h2`
   line-height: 1.06em;
   letter-spacing: -0.6px;
   margin-bottom: 16px;
+
+  @media only screen and (min-width: 768px) {
+    font-size: 40px;
+    line-height: 1.2em;
+    letter-spacing: -0.8px;
+    margin-bottom: 20px;
+  }
 `;
 
 export const Desc = styled.p`
@@ -22,6 +40,20 @@ export const Desc = styled.p`
   font-weight: 400;
   line-height: 1.5em;
   margin-bottom: 16px;
+
+  @media only screen and (min-width: 768px) {
+    width: 500px;
+    font-size: 20px;
+    margin-bottom: 32px;
+  }
+`;
+
+export const Form = styled.form`
+  width: 343px;
+
+  @media only screen and (min-width: 768px) {
+    width: 500px;
+  }
 `;
 
 export const InputBox = styled.div`
@@ -38,6 +70,10 @@ export const InputBox = styled.div`
 
   input::placeholder {
     color: ${({ theme }) => theme.colors.black};
+  }
+
+  @media only screen and (min-width: 768px) {
+    gap: 18px;
   }
 `;
 
@@ -60,9 +96,26 @@ export const SubmitBtn = styled.button`
   background: ${({ theme }) => theme.colors.green};
   padding: 16px 139px;
   border-radius: 30px;
+  width: 100%;
+  margin-bottom: 16px;
 
   color: ${({ theme }) => theme.colors.white};
   font-size: 16px;
   font-weight: 700;
   line-height: 1.5em;
+
+  @media only screen and (min-width: 768px) {
+    font-size: 18px;
+  }
+`;
+
+export const LoginLink = styled.div`
+  background: transparent;
+  color: ${({ theme }) => theme.colors.boldGray};
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5em;
+  text-decoration: underline;
+  display: flex;
+  justify-content: center;
 `;
