@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import sprite from "../../images/sprite.svg";
-import { BurgerBtn, Container, LogoBox, Wrapper } from "./Header.styled";
+import { BurgerBtn, Container, Wrapper } from "./Header.styled";
 import Menu from "./Menu/Menu";
 import UserBar from "./UserBar/UserBar";
-import { NavLink } from "react-router-dom";
+import Logo from "./Logo/Logo";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -20,12 +20,7 @@ const Header = () => {
     <>
       <header>
         <Container>
-          <LogoBox>
-            <svg width={36} height={36}>
-              <use href={`${sprite}#logo`} />
-            </svg>
-            <NavLink to="/">VocabBuilder</NavLink>
-          </LogoBox>
+          <Logo />
           <Wrapper>
             <UserBar />
             <BurgerBtn onClick={handleOpenMenu}>

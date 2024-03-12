@@ -39,9 +39,3 @@ export const CloseBtn = styled.button`
   align-items: center;
   justify-content: center;
 `;
-
-export const UserNav = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-`;

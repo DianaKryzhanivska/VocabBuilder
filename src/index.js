@@ -4,10 +4,14 @@ import { App } from "components/App";
 import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import { GlobalStyles } from "styles/GlobalStyles";
+import { ThemeProvider } from "styled-components";
+import { theme } from "styles/theme";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <BrowserRouter basename="/VocabBuilder">
-    <App />
-    <GlobalStyles />
-  </BrowserRouter>
+  <ThemeProvider theme={theme}>
+    <BrowserRouter basename="/VocabBuilder">
+      <App />
+      <GlobalStyles />
+    </BrowserRouter>
+  </ThemeProvider>
 );

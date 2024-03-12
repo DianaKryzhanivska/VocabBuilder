@@ -8,12 +8,6 @@ export const Container = styled(CommonContainer)`
   justify-content: space-between;
 `;
 
-export const LogoBox = styled.div`
-  display: flex;
-  gap: 16px;
-  align-items: center;
-`;
-
 export const Wrapper = styled.div`
   display: flex;
   gap: 8px;

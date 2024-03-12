@@ -1,17 +1,16 @@
 import React, { useCallback, useEffect } from "react";
-import { NavLink } from "react-router-dom";
 import {
   CloseBtn,
   Container,
   Content,
   MenuHeader,
   Overlay,
-  UserNav,
 } from "./Menu.styled";
 import sprite from "../../../images/sprite.svg";
 import UserBar from "../UserBar/UserBar";
 import usual from "../../../images/mob-menu-illustration@1x.png";
 import retina from "../../../images/mob-menu-illustration@2x.png";
+import UserNav from "../UserNav/UserNav";
 
 const Menu = ({ isOpen, onClose }) => {
   const handleKeyDown = useCallback(
@@ -55,11 +54,7 @@ const Menu = ({ isOpen, onClose }) => {
                 </svg>
               </CloseBtn>
             </MenuHeader>
-            <UserNav>
-              <NavLink to="/dictionary">Dictionary</NavLink>
-              <NavLink to="/recommend">Recommend</NavLink>
-              <NavLink to="/training">Training</NavLink>
-            </UserNav>
+            <UserNav />
           </Container>
           <img
             srcSet={`${usual} 1x, ${retina} 2x`}
