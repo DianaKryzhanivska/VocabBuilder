@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Layout from "./Layout";
-import Register from "pages/Register";
+import RegisterPage from "pages/RegisterPage";
 import Login from "pages/Login";
 import Dictionary from "pages/Dictionary";
 import Recommend from "pages/Recommend";
@@ -11,7 +11,7 @@ export const App = () => {
   return (
     <>
       <Routes>
-        <Route path="register" element={<Register />} />
+        <Route path="register" element={<RegisterPage />} />
         <Route path="login" element={<Login />} />
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
