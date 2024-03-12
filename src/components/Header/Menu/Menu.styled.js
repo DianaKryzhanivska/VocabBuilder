@@ -20,11 +20,20 @@ export const Content = styled.div`
   background: #85aa9f;
   overflow-y: auto;
   z-index: 100;
+
+  @media only screen and (min-width: 768px) {
+    width: 300px;
+  }
 `;
 
 export const Container = styled(CommonContainer)`
   padding-top: 16px;
   padding-bottom: 139px;
+
+  @media only screen and (min-width: 768px) {
+    padding-top: 20px;
+    padding-bottom: 214px;
+  }
 `;
 
 export const MenuHeader = styled.div`
@@ -38,4 +47,16 @@ export const CloseBtn = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  & svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  @media only screen and (min-width: 768px) {
+    & svg {
+      width: 40px;
+      height: 40px;
+    }
+  }
 `;

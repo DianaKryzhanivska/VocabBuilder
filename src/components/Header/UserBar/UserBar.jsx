@@ -1,13 +1,13 @@
 import React from "react";
 import sprite from "../../../images/sprite.svg";
-import { UserIcon, Wrapper } from "./UserBar.styled";
+import { UserIcon, UserName, Wrapper } from "./UserBar.styled";
 
 const UserBar = () => {
   return (
     <Wrapper>
-      <p>Name</p>
+      <UserName>Name</UserName>
       <UserIcon>
-        <svg width={20} height={20}>
+        <svg>
           <use href={`${sprite}#user`} />
         </svg>
       </UserIcon>

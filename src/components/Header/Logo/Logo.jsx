@@ -1,16 +1,15 @@
 import React from "react";
-import { LogoBox } from "./Logo.styled";
+import { LogoBox, NavLinkStyled } from "./Logo.styled";
 import sprite from "../../../images/sprite.svg";
-import { NavLink } from "react-router-dom";
 
 const Logo = () => {
   return (
     <>
       <LogoBox>
-        <svg width={36} height={36}>
+        <svg>
           <use href={`${sprite}#logo`} />
         </svg>
-        <NavLink to="/">VocabBuilder</NavLink>
+        <NavLinkStyled to="/">VocabBuilder</NavLinkStyled>
       </LogoBox>
     </>
   );

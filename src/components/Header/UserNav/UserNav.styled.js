@@ -17,4 +17,17 @@ export const NavBox = styled.ul`
     padding: 12px 20px;
     border-radius: 15px;
   }
+
+  @media only screen and (min-width: 1440px) {
+    flex-direction: row;
+
+    & a {
+      color: ${({ theme }) => theme.colors.black};
+    }
+
+    & a.active {
+      color: ${({ theme }) => theme.colors.white};
+      background: ${({ theme }) => theme.colors.green};
+    }
+  }
 `;

@@ -4,8 +4,14 @@ import { BurgerBtn, Container, Wrapper } from "./Header.styled";
 import Menu from "./Menu/Menu";
 import UserBar from "./UserBar/UserBar";
 import Logo from "./Logo/Logo";
+import { useMediaQuery } from "react-responsive";
+import UserNav from "./UserNav/UserNav";
 
 const Header = () => {
+  const isDesktop = useMediaQuery({
+    query: "(min-width: 1440px)",
+  });
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleOpenMenu = () => {
@@ -22,12 +28,15 @@ const Header = () => {
         <Container>
           <Logo />
           <Wrapper>
+            {isDesktop && <UserNav />}
             <UserBar />
-            <BurgerBtn onClick={handleOpenMenu}>
-              <svg width={32} height={22}>
-                <use href={`${sprite}#burger`} />
-              </svg>
-            </BurgerBtn>
+            {!isDesktop && (
+              <BurgerBtn onClick={handleOpenMenu}>
+                <svg>
+                  <use href={`${sprite}#burger`} />
+                </svg>
+              </BurgerBtn>
+            )}
           </Wrapper>
         </Container>
       </header>

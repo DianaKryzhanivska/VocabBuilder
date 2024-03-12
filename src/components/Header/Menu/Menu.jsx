@@ -10,9 +10,20 @@ import sprite from "../../../images/sprite.svg";
 import UserBar from "../UserBar/UserBar";
 import usual from "../../../images/mob-menu-illustration@1x.png";
 import retina from "../../../images/mob-menu-illustration@2x.png";
+import usualTab from "../../../images/tab-menu-illustration@1x.png";
+import retinaTab from "../../../images/tab-menu-illustration@2x.png";
 import UserNav from "../UserNav/UserNav";
+import { useMediaQuery } from "react-responsive";
 
 const Menu = ({ isOpen, onClose }) => {
+  const isMobile = useMediaQuery({
+    query: "(max-width: 767px)",
+  });
+
+  const isTablet = useMediaQuery({
+    query: "(min-width: 768px) and (max-width: 1439px)",
+  });
+
   const handleKeyDown = useCallback(
     (e) => {
       if (e.key === "Escape") {
@@ -49,19 +60,29 @@ const Menu = ({ isOpen, onClose }) => {
             <MenuHeader>
               <UserBar />
               <CloseBtn onClick={onClose}>
-                <svg width={32} height={32}>
+                <svg>
                   <use href={`${sprite}#close`} />
                 </svg>
               </CloseBtn>
             </MenuHeader>
             <UserNav />
           </Container>
-          <img
-            srcSet={`${usual} 1x, ${retina} 2x`}
-            alt="illustration"
-            width={363}
-            height={318}
-          />
+          {isMobile && (
+            <img
+              srcSet={`${usual} 1x, ${retina} 2x`}
+              alt="illustration"
+              width={363}
+              height={318}
+            />
+          )}
+          {isTablet && (
+            <img
+              srcSet={`${usualTab} 1x, ${retinaTab} 2x`}
+              alt="illustration"
+              width={498}
+              height={435}
+            />
+          )}
         </Content>
       </Overlay>
     </>
