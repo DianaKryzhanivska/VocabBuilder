@@ -1,9 +1,11 @@
 {
   "files": {
     "main.css": "/VocabBuilder/static/css/main.7acaea2f.css",
-    "main.js": "/VocabBuilder/static/js/main.d2a8ecd7.js",
+    "main.js": "/VocabBuilder/static/js/main.3bbd40e2.js",
+    "static/media/desk-illustration@2x.png": "/VocabBuilder/static/media/desk-illustration@2x.38ef90c96887d97cfb4a.png",
     "static/media/tab-menu-illustration@2x.png": "/VocabBuilder/static/media/tab-menu-illustration@2x.18d95d3ce200bb1060fc.png",
     "static/media/mob-menu-illustration@2x.png": "/VocabBuilder/static/media/mob-menu-illustration@2x.5cec6a70dae99fe86ef1.png",
+    "static/media/desk-illustration@1x.png": "/VocabBuilder/static/media/desk-illustration@1x.e9535b2d8f64cbafb6c7.png",
     "static/media/mob-illustration@2x.png": "/VocabBuilder/static/media/mob-illustration@2x.762bf9c6368c925ee728.png",
     "static/media/tab-menu-illustration@1x.png": "/VocabBuilder/static/media/tab-menu-illustration@1x.2c8228c87cde0dae65ab.png",
     "static/media/mob-menu-illustration@1x.png": "/VocabBuilder/static/media/mob-menu-illustration@1x.4f1a208ca9169c58aabe.png",
@@ -11,10 +13,10 @@
     "static/media/sprite.svg": "/VocabBuilder/static/media/sprite.4e1bd24b720a50b861115f441aad8d96.svg",
     "index.html": "/VocabBuilder/index.html",
     "main.7acaea2f.css.map": "/VocabBuilder/static/css/main.7acaea2f.css.map",
-    "main.d2a8ecd7.js.map": "/VocabBuilder/static/js/main.d2a8ecd7.js.map"
+    "main.3bbd40e2.js.map": "/VocabBuilder/static/js/main.3bbd40e2.js.map"
   },
   "entrypoints": [
     "static/css/main.7acaea2f.css",
-    "static/js/main.d2a8ecd7.js"
+    "static/js/main.3bbd40e2.js"
   ]
 }
