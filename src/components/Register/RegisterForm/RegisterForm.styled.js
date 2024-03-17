@@ -85,9 +85,9 @@ export const InputWithIcon = styled.div`
     width: 20px;
     height: 20px;
     position: absolute;
-    top: 18px;
-    right: 18px;
-    fill: white;
+    top: 16px;
+    right: 16px;
+    fill: #fff;
     stroke: ${({ theme }) => theme.colors.black};
   }
 `;

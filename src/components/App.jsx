@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import Layout from "./Layout";
 import RegisterPage from "pages/RegisterPage";
-import Login from "pages/Login";
+import LoginPage from "pages/LoginPage";
 import Dictionary from "pages/Dictionary";
 import Recommend from "pages/Recommend";
 import Training from "pages/Training";
@@ -12,7 +12,7 @@ export const App = () => {
     <>
       <Routes>
         <Route path="register" element={<RegisterPage />} />
-        <Route path="login" element={<Login />} />
+        <Route path="login" element={<LoginPage />} />
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="dictionary" element={<Dictionary />} />
