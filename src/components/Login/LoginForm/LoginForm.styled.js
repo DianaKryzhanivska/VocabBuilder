@@ -13,6 +13,10 @@ export const Wrapper = styled.div`
     padding: 48px 64px;
     width: 628px;
   }
+
+  @media only screen and (min-width: 1440px) {
+    margin: 11px 0 0;
+  }
 `;
 
 export const Title = styled.h2`

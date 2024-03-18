@@ -11,8 +11,20 @@ export const Container = styled(CommonContainer)`
   }
 `;
 
+export const Wrapper = styled.div`
+  display: flex;
+  gap: 80px;
+  margin-top: 103px;
+`;
+
 export const Img = styled.img`
   margin: 12px auto 16px;
+`;
+
+export const ImgBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 `;
 
 export const Text = styled.p`
