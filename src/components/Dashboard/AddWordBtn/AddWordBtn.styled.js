@@ -4,6 +4,10 @@ export const Wrapper = styled.div`
   display: flex;
   gap: 16px;
   margin-bottom: 32px;
+
+  @media only screen and (min-width: 768px) {
+    margin-bottom: 0;
+  }
 `;
 
 export const Btn = styled.button`

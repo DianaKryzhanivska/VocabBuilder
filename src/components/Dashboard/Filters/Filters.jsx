@@ -23,6 +23,7 @@ const customStyles = {
     borderRadius: "12px",
     border: "1px solid rgba(18, 20, 23, 0.10)",
     height: "48px",
+    background: "#F8F8F8",
   }),
   valueContainer: (baseStyles, state) => ({
     ...baseStyles,

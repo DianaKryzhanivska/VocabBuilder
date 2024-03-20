@@ -7,5 +7,6 @@ export const theme = {
     lightGreen: "rgba(133, 170, 159, 0.10)",
     white: "#FCFCFC",
     borderGray: "rgba(18, 20, 23, 0.10)",
+    background: "#F8F8F8",
   },
 };

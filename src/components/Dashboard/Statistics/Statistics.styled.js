@@ -17,4 +17,17 @@ export const Wrapper = styled.div`
     font-size: 20px;
     font-weight: 500;
   }
+
+  @media only screen and (min-width: 768px) {
+    margin-bottom: 0;
+
+    & p {
+      font-size: 16px;
+      line-height: 1.5em;
+    }
+
+    & span {
+      line-height: 1.5em;
+    }
+  }
 `;
