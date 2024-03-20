@@ -1,8 +1,33 @@
 import styled from "styled-components";
 
+export const Wrapper = styled.div`
+  @media only screen and (min-width: 768px) {
+    padding: 18px;
+    background: #fff;
+    width: 704px;
+    box-sizing: border-box;
+    border-radius: 15px;
+  }
+
+  @media only screen and (min-width: 1440px) {
+    width: 1240px;
+  }
+`;
+
+export const TableContainer = styled.div`
+  border-radius: 8px 8px 0 0;
+  border: none;
+  overflow: hidden;
+
+  @media only screen and (min-width: 768px) {
+    border-radius: 8px;
+  }
+`;
+
 export const TableItem = styled.table`
   border-radius: 8px 8px 0px 0px;
   border-collapse: collapse;
+  width: 100%;
 
   & th,
   td {
@@ -22,6 +47,28 @@ export const TableItem = styled.table`
     background: ${({ theme }) => theme.colors.white};
     font-size: 14px;
   }
+
+  @media only screen and (min-width: 768px) {
+    & th,
+    td {
+      padding: 22px;
+      font-size: 18px;
+    }
+  }
+
+  @media only screen and (min-width: 1440px) {
+    & th,
+    td {
+      font-size: 20px;
+    }
+  }
+`;
+
+export const BoxWithIcon = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
 `;
 
 export const ActionsBtn = styled.button`
