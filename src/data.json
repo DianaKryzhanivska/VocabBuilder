@@ -1,0 +1,55 @@
+{
+  "results": [
+    {
+      "_id": "65f814ba628b2a5966523c1f",
+      "en": "think",
+      "ua": "думати",
+      "category": "verb",
+      "isIrregular": false
+    },
+    {
+      "_id": "65e0740b628b2a59664cd4b6",
+      "en": "Feed-fed-fe",
+      "ua": "Годувати",
+      "category": "verb",
+      "isIrregular": true
+    },
+    {
+      "_id": "65e0734f628b2a59664cd4b1",
+      "en": "Draw-drew-draw",
+      "ua": "Малювати",
+      "category": "verb",
+      "isIrregular": true
+    },
+    {
+      "_id": "65ee0e6f628b2a5966517161",
+      "en": "Want",
+      "ua": "Хочу",
+      "category": "verb",
+      "isIrregular": false
+    },
+    {
+      "_id": "65f19990628b2a5966521b46",
+      "en": "car",
+      "ua": "машина",
+      "category": "participle"
+    },
+    {
+      "_id": "65e0710c628b2a59664cd49d",
+      "en": "Bend-bent-bent",
+      "ua": "Зігнути",
+      "category": "verb",
+      "isIrregular": true
+    },
+    {
+      "_id": "65e0879a628b2a59664cdbf9",
+      "en": "Blow-blew-blown",
+      "ua": "Дути",
+      "category": "verb",
+      "isIrregular": true
+    }
+  ],
+  "totalPages": 10,
+  "page": 1,
+  "perPage": 7
+}

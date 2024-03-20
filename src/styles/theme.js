@@ -8,5 +8,6 @@ export const theme = {
     white: "#FCFCFC",
     borderGray: "rgba(18, 20, 23, 0.10)",
     background: "#F8F8F8",
+    tableBorder: "#DBDBDB",
   },
 };
