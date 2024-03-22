@@ -2,10 +2,10 @@ import { Route, Routes } from "react-router-dom";
 import Layout from "./Layout";
 import RegisterPage from "pages/RegisterPage";
 import LoginPage from "pages/LoginPage";
-import Recommend from "pages/Recommend";
 import Training from "pages/Training";
 import HomePage from "pages/HomePage";
 import DictionaryPage from "pages/DictionaryPage";
+import RecommendPage from "pages/RecommendPage";
 
 export const App = () => {
   return (
@@ -16,7 +16,7 @@ export const App = () => {
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="dictionary" element={<DictionaryPage />} />
-          <Route path="recommend" element={<Recommend />} />
+          <Route path="recommend" element={<RecommendPage />} />
           <Route path="training" element={<Training />} />
         </Route>
       </Routes>
