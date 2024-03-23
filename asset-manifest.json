@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/VocabBuilder/static/css/main.9c33b6b4.css",
-    "main.js": "/VocabBuilder/static/js/main.7625c08a.js",
+    "main.js": "/VocabBuilder/static/js/main.de03ff4f.js",
     "static/media/desk-illustration@2x.png": "/VocabBuilder/static/media/desk-illustration@2x.38ef90c96887d97cfb4a.png",
     "static/media/tab-menu-illustration@2x.png": "/VocabBuilder/static/media/tab-menu-illustration@2x.18d95d3ce200bb1060fc.png",
     "static/media/mob-menu-illustration@2x.png": "/VocabBuilder/static/media/mob-menu-illustration@2x.5cec6a70dae99fe86ef1.png",
@@ -10,13 +10,13 @@
     "static/media/tab-menu-illustration@1x.png": "/VocabBuilder/static/media/tab-menu-illustration@1x.2c8228c87cde0dae65ab.png",
     "static/media/mob-menu-illustration@1x.png": "/VocabBuilder/static/media/mob-menu-illustration@1x.4f1a208ca9169c58aabe.png",
     "static/media/mob-illustration@1x.png": "/VocabBuilder/static/media/mob-illustration@1x.fafe318829df3fe2e1a9.png",
-    "static/media/sprite.svg": "/VocabBuilder/static/media/sprite.7d6a8e981cd409448390e72723e8e5c0.svg",
+    "static/media/sprite.svg": "/VocabBuilder/static/media/sprite.19bfe3a9cf9ff4110021217d9ca0ed6a.svg",
     "index.html": "/VocabBuilder/index.html",
     "main.9c33b6b4.css.map": "/VocabBuilder/static/css/main.9c33b6b4.css.map",
-    "main.7625c08a.js.map": "/VocabBuilder/static/js/main.7625c08a.js.map"
+    "main.de03ff4f.js.map": "/VocabBuilder/static/js/main.de03ff4f.js.map"
   },
   "entrypoints": [
     "static/css/main.9c33b6b4.css",
-    "static/js/main.7625c08a.js"
+    "static/js/main.de03ff4f.js"
   ]
 }
