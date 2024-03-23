@@ -1,9 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import sprite from "../../../images/sprite.svg";
 import { Form, InputWithIcon } from "./Filters.styled";
 import Select from "react-select";
 import { useDispatch, useSelector } from "react-redux";
-import { getCategoriesThunk } from "../../../redux/word/operations";
+import {
+  getCategoriesThunk,
+  getSearchWordsThunk,
+} from "../../../redux/word/operations";
 import { selectCategories } from "../../../redux/word/selectors";
 
 const customStyles = {
@@ -39,6 +42,8 @@ const customStyles = {
 const Filters = () => {
   const dispatch = useDispatch();
   const categories = useSelector(selectCategories);
+  const [searchedKeyWord, setSearchedKeyWord] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
   useEffect(() => {
     dispatch(getCategoriesThunk());
   }, [dispatch]);
@@ -46,12 +51,30 @@ const Filters = () => {
     value: category,
     label: category,
   }));
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const searchedWords = {
+      keyword: searchedKeyWord,
+      category: selectedCategory.value,
+      page: 1,
+      limit: 7,
+    };
+    dispatch(getSearchWordsThunk(searchedWords));
+    setSearchedKeyWord("");
+    setSelectedCategory("");
+  };
   return (
     <>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <InputWithIcon>
-          <input type="text" placeholder="Find the word" />
-          <svg>
+          <input
+            type="text"
+            placeholder="Find the word"
+            onChange={(e) => setSearchedKeyWord(e.target.value)}
+            value={searchedKeyWord}
+          />
+          <svg onClick={handleSubmit}>
             <use href={`${sprite}#search`} />
           </svg>
         </InputWithIcon>
@@ -59,7 +82,10 @@ const Filters = () => {
           options={options}
           styles={customStyles}
           placeholder="Categories"
+          onChange={setSelectedCategory}
+          value={selectedCategory}
         />
+        <button type="submit" style={{ display: "none" }}></button>
       </Form>
     </>
   );

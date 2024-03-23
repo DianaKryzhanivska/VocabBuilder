@@ -1,9 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getAllWordsThunk, getCategoriesThunk } from "./operations";
+import {
+  getAllWordsThunk,
+  getCategoriesThunk,
+  getSearchWordsThunk,
+} from "./operations";
 
 const initialState = {
   categories: [],
   words: [],
+  filtered: [],
   own: [],
   statistics: [],
   tasks: [],
@@ -38,6 +43,18 @@ export const slice = createSlice({
         state.isLoading = true;
       })
       .addCase(getAllWordsThunk.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      .addCase(getSearchWordsThunk.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        state.filtered = payload;
+      })
+      .addCase(getSearchWordsThunk.pending, (state, { payload }) => {
+        state.isLoading = true;
+      })
+      .addCase(getSearchWordsThunk.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
       });
