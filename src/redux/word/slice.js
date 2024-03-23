@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getCategoriesThunk } from "./operations";
+import { getAllWordsThunk, getCategoriesThunk } from "./operations";
 
 const initialState = {
   categories: [],
@@ -26,6 +26,18 @@ export const slice = createSlice({
         state.isLoading = true;
       })
       .addCase(getCategoriesThunk.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      .addCase(getAllWordsThunk.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        state.words = payload;
+      })
+      .addCase(getAllWordsThunk.pending, (state, { payload }) => {
+        state.isLoading = true;
+      })
+      .addCase(getAllWordsThunk.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
       });
