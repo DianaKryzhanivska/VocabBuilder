@@ -24,7 +24,6 @@ export const slice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(signUpThunk.fulfilled, (state, { payload }) => {
-        console.log("Payload from signUpThunk:", payload);
         state.isLoading = false;
         state.isLoggedIn = true;
         state.token = payload.token;
@@ -37,7 +36,10 @@ export const slice = createSlice({
         state.isLoading = false;
         state.isLoggedIn = true;
         state.token = payload.token;
-        state.user = payload.user;
+        state.user = {
+          name: payload.name,
+          email: payload.email,
+        };
       })
       .addCase(refreshThunk.fulfilled, (state, { payload }) => {
         state.isRefresh = false;

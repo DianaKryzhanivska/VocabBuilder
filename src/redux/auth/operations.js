@@ -6,14 +6,11 @@ export const signUpThunk = createAsyncThunk(
   "users/signup",
   async (credentials, { rejectWithValue }) => {
     try {
-      console.log(credentials);
       const response = await instance.post("/users/signup", credentials);
       setToken(response.data.token);
-      console.log(response);
       toast.success(`Welcome ${response.data.name}`);
       return response.data;
     } catch (error) {
-      console.log(credentials);
       if (error.response) {
         switch (error.response.status) {
           case 400:
@@ -35,11 +32,10 @@ export const signInThunk = createAsyncThunk(
   "users/signin",
   async (credentials, { rejectWithValue }) => {
     try {
-      const { data } = await instance.post("/users/signin", credentials);
-      setToken(data.token);
-      toast.success(`Hello ${data.user.name}`);
-      console.log("signIn", data);
-      return data;
+      const response = await instance.post("/users/signin", credentials);
+      setToken(response.data.token);
+      toast.success(`Hello ${response.data.name}`);
+      return response.data;
     } catch (error) {
       toast.error(`Email or password is not valid`);
       return rejectWithValue(error.message);
@@ -77,7 +73,6 @@ export const refreshThunk = createAsyncThunk(
     }
     try {
       const { data } = await instance.get("/users/current");
-      console.log("refreshThunk", data);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);

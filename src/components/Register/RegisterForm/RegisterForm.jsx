@@ -24,14 +24,7 @@ const RegisterForm = () => {
     return <Navigate to="/dictionary" />;
   }
   const handleSubmit = (values) => {
-    console.log(values);
-    const userData = {
-      name: values.name,
-      email: values.email,
-      password: values.password,
-    };
-    console.log("userdata", userData);
-    dispatch(signUpThunk(userData));
+    dispatch(signUpThunk(values));
   };
   return (
     <>
