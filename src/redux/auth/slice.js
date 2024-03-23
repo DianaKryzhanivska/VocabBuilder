@@ -10,7 +10,6 @@ const initialState = {
   user: {
     name: "",
     email: "",
-    password: "",
   },
   token: "",
   isLoggedIn: false,
@@ -24,6 +23,16 @@ export const slice = createSlice({
   initialState,
   extraReducers: (builder) => {
     builder
+      .addCase(signUpThunk.fulfilled, (state, { payload }) => {
+        console.log("Payload from signUpThunk:", payload);
+        state.isLoading = false;
+        state.isLoggedIn = true;
+        state.token = payload.token;
+        state.user = {
+          name: payload.name,
+          email: payload.email,
+        };
+      })
       .addCase(signInThunk.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.isLoggedIn = true;
@@ -39,7 +48,7 @@ export const slice = createSlice({
       })
       .addCase(signOutThunk.fulfilled, (state) => {
         state.isLoading = false;
-        state.isLoggedIn = true;
+        state.isLoggedIn = false;
         state.token = "";
         state.user = {
           email: "",

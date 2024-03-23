@@ -5,7 +5,7 @@ const BASE_URL = "https://vocab-builder-backend.p.goit.global/api";
 const instance = axios.create({
   baseURL: BASE_URL,
   headers: {
-    "Content-Type": "application.json",
+    "Content-Type": "application/json",
   },
 });
 

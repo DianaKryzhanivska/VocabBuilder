@@ -6,20 +6,25 @@ export const signUpThunk = createAsyncThunk(
   "users/signup",
   async (credentials, { rejectWithValue }) => {
     try {
-      await instance.post("/users/signup", credentials);
-      const { email, password } = credentials;
-      console.log("signUp", email, password);
-      return { email, password };
+      console.log(credentials);
+      const response = await instance.post("/users/signup", credentials);
+      setToken(response.data.token);
+      console.log(response);
+      toast.success(`Welcome ${response.data.name}`);
+      return response.data;
     } catch (error) {
-      switch (error.response.status) {
-        case 400:
-          toast.error(`Validation error: please check your data`);
-          break;
-        case 409:
-          toast.error(`Error: User with this email already exists`);
-          break;
-        default:
-          break;
+      console.log(credentials);
+      if (error.response) {
+        switch (error.response.status) {
+          case 400:
+            toast.error(`Validation error: please check your data`);
+            break;
+          case 409:
+            toast.error(`Error: User with this email already exists`);
+            break;
+          default:
+            break;
+        }
       }
       return rejectWithValue(error.message);
     }

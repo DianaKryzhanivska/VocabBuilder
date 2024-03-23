@@ -10,13 +10,28 @@ import {
   Wrapper,
 } from "./RegisterForm.styled";
 import sprite from "../../../images/sprite.svg";
-import { NavLink } from "react-router-dom";
-import { Formik } from "formik";
+import { NavLink, Navigate } from "react-router-dom";
+import { ErrorMessage, Field, Formik } from "formik";
 import { registerSchema } from "../../../schemas/yupSchemas";
+import { useDispatch, useSelector } from "react-redux";
+import { signUpThunk } from "../../../redux/auth/operations";
+import { selectIsLoggedIn } from "../../../redux/auth/selectors";
 
 const RegisterForm = () => {
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  if (isLoggedIn) {
+    return <Navigate to="/dictionary" />;
+  }
   const handleSubmit = (values) => {
     console.log(values);
+    const userData = {
+      name: values.name,
+      email: values.email,
+      password: values.password,
+    };
+    console.log("userdata", userData);
+    dispatch(signUpThunk(userData));
   };
   return (
     <>
@@ -38,27 +53,34 @@ const RegisterForm = () => {
           {({ values, handleChange, handleSubmit, isSubmitting }) => (
             <Form onSubmit={handleSubmit}>
               <InputBox>
-                <input
+                <Field
                   type="text"
                   placeholder="Name"
                   name="name"
                   onChange={handleChange}
                   value={values.name}
                 />
-                <input
+                <ErrorMessage name="name" component="div" className="error" />
+                <Field
                   type="email"
                   placeholder="Email"
                   name="email"
                   onChange={handleChange}
                   value={values.email}
                 />
+                <ErrorMessage name="email" component="div" className="error" />
                 <InputWithIcon>
-                  <input
+                  <Field
                     type="password"
                     placeholder="Password"
                     name="password"
                     onChange={handleChange}
                     value={values.password}
+                  />
+                  <ErrorMessage
+                    name="password"
+                    component="div"
+                    className="error"
                   />
                   <svg>
                     <use href={`${sprite}#eye-off`} />
