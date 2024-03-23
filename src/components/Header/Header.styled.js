@@ -19,7 +19,7 @@ export const Container = styled(CommonContainer)`
 
 export const Wrapper = styled.div`
   display: flex;
-  gap: 8px;
+  gap: 2px;
   align-items: center;
 
   @media only screen and (min-width: 768px) {

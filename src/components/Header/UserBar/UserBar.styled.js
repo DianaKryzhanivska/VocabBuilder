@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
   display: flex;
-  gap: 8px;
+  gap: 2px;
   align-items: center;
 
   @media only screen and (min-width: 768px) {
@@ -44,6 +44,31 @@ export const UserIcon = styled.div`
     & svg {
       width: 24px;
       height: 24px;
+    }
+  }
+`;
+
+export const LogOutBtn = styled.button`
+  background: transparent;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & svg {
+    width: 26px;
+    height: 26px;
+    fill: #85aa9f;
+  }
+
+  @media only screen and (min-width: 768px) {
+    width: 48px;
+    height: 48px;
+
+    & svg {
+      width: 30px;
+      height: 30px;
     }
   }
 `;
