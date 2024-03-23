@@ -11,15 +11,17 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { authReducer } from "./auth/slice";
+import { wordReducer } from "./word/slice";
 
 const authPersistConfig = {
-  key: "auth",
+  key: "root",
   storage,
   whitelist: ["token"],
 };
 
 const rootReducer = {
   auth: persistReducer(authPersistConfig, authReducer),
+  word: persistReducer(authPersistConfig, wordReducer),
 };
 
 export const store = configureStore({

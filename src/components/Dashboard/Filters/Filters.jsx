@@ -1,21 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import sprite from "../../../images/sprite.svg";
 import { Form, InputWithIcon } from "./Filters.styled";
 import Select from "react-select";
-
-const options = [
-  { value: "Verb", label: "Verb" },
-  { value: "Participle", label: "Participle" },
-  { value: "Noun", label: "Noun" },
-  { value: "Adjective", label: "Adjective" },
-  { value: "Pronoun", label: "Pronoun" },
-  { value: "Numerals", label: "Numerals" },
-  { value: "Adverb", label: "Adverb" },
-  { value: "Preposition", label: "Preposition" },
-  { value: "Conjuction", label: "Conjuction" },
-  { value: "Phrasal verb", label: "Phrasal verb" },
-  { value: "Functional phrase", label: "Functional phrase" },
-];
+import { useDispatch, useSelector } from "react-redux";
+import { getCategoriesThunk } from "../../../redux/word/operations";
+import { selectCategories } from "../../../redux/word/selectors";
 
 const customStyles = {
   control: (baseStyles, state) => ({
@@ -28,6 +17,10 @@ const customStyles = {
   valueContainer: (baseStyles, state) => ({
     ...baseStyles,
     paddingLeft: "24px",
+  }),
+  option: (baseStyles, state) => ({
+    ...baseStyles,
+    textTransform: "capitalize",
   }),
   indicatorSeparator: (baseStyles, state) => ({
     ...baseStyles,
@@ -44,6 +37,15 @@ const customStyles = {
 };
 
 const Filters = () => {
+  const dispatch = useDispatch();
+  const categories = useSelector(selectCategories);
+  useEffect(() => {
+    dispatch(getCategoriesThunk());
+  }, [dispatch]);
+  const options = categories?.map((category) => ({
+    value: category,
+    label: category,
+  }));
   return (
     <>
       <Form>
