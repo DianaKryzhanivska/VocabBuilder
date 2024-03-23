@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Desc,
   Form,
@@ -19,10 +19,14 @@ import { selectIsLoggedIn } from "../../../redux/auth/selectors";
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
+  const [showPassword, setShowPassword] = useState(false);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   if (isLoggedIn) {
     return <Navigate to="/dictionary" />;
   }
+  const handleTogglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
   const handleSubmit = (values) => {
     dispatch(signUpThunk(values));
   };
@@ -64,7 +68,7 @@ const RegisterForm = () => {
                 <ErrorMessage name="email" component="div" className="error" />
                 <InputWithIcon>
                   <Field
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     placeholder="Password"
                     name="password"
                     onChange={handleChange}
@@ -75,8 +79,12 @@ const RegisterForm = () => {
                     component="div"
                     className="error"
                   />
-                  <svg>
-                    <use href={`${sprite}#eye-off`} />
+                  <svg onClick={handleTogglePasswordVisibility}>
+                    {showPassword ? (
+                      <use href={`${sprite}#eye`} />
+                    ) : (
+                      <use href={`${sprite}#eye-off`} />
+                    )}
                   </svg>
                 </InputWithIcon>
               </InputBox>

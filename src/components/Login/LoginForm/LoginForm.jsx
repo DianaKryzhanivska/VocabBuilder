@@ -15,13 +15,18 @@ import { loginSchema } from "../../../schemas/yupSchemas";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsLoggedIn } from "../../../redux/auth/selectors";
 import { signInThunk } from "../../../redux/auth/operations";
+import { useState } from "react";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
+  const [showPassword, setShowPassword] = useState(false);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   if (isLoggedIn) {
     return <Navigate to="/dictionary" />;
   }
+  const handleTogglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
   const handleSubmit = (values) => {
     dispatch(signInThunk(values));
   };
@@ -54,7 +59,7 @@ const LoginForm = () => {
                 <ErrorMessage name="email" component="div" className="error" />
                 <InputWithIcon>
                   <Field
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     placeholder="Password"
                     name="password"
                     onChange={handleChange}
@@ -65,8 +70,12 @@ const LoginForm = () => {
                     component="div"
                     className="error"
                   />
-                  <svg>
-                    <use href={`${sprite}#eye-off`} />
+                  <svg onClick={handleTogglePasswordVisibility}>
+                    {showPassword ? (
+                      <use href={`${sprite}#eye`} />
+                    ) : (
+                      <use href={`${sprite}#eye-off`} />
+                    )}
                   </svg>
                 </InputWithIcon>
               </InputBox>
