@@ -1,4 +1,3 @@
-import { configureStore } from "@reduxjs/toolkit";
 import {
   persistStore,
   persistReducer,
@@ -10,18 +9,19 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import { configureStore } from "@reduxjs/toolkit";
 import { authReducer } from "./auth/slice";
 import { wordReducer } from "./word/slice";
 
 const authPersistConfig = {
-  key: "root",
+  key: "auth",
   storage,
-  whitelist: ["token"],
+  whitelist: ["accessToken", "refreshToken"],
 };
 
 const rootReducer = {
   auth: persistReducer(authPersistConfig, authReducer),
-  word: persistReducer(authPersistConfig, wordReducer),
+  word: wordReducer,
 };
 
 export const store = configureStore({

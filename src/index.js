@@ -14,9 +14,9 @@ import { persistor, store } from "./redux/store";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <ThemeProvider theme={theme}>
-    <BrowserRouter basename="/VocabBuilder">
-      <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <BrowserRouter basename="/VocabBuilder">
           <App />
           <ToastContainer
             position="top-right"
@@ -31,8 +31,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             theme="light"
           />
           <GlobalStyles />
-        </PersistGate>
-      </Provider>
-    </BrowserRouter>
+        </BrowserRouter>
+      </PersistGate>
+    </Provider>
   </ThemeProvider>
 );

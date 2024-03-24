@@ -1,6 +1,6 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import {
-  refreshThunk,
+  currentUserThunk,
   signInThunk,
   signOutThunk,
   signUpThunk,
@@ -14,7 +14,7 @@ const initialState = {
   token: "",
   isLoggedIn: false,
   isLoading: false,
-  isRefresh: true,
+  isRefresh: false,
   error: null,
 };
 
@@ -41,12 +41,13 @@ export const slice = createSlice({
           email: payload.email,
         };
       })
-      .addCase(refreshThunk.fulfilled, (state, { payload }) => {
+      .addCase(currentUserThunk.fulfilled, (state, { payload }) => {
         state.isRefresh = false;
         state.isLoading = false;
         state.isLoggedIn = true;
         state.token = payload.token;
-        state.user = payload.user;
+        state.user.name = payload.name;
+        state.user.email = payload.email;
       })
       .addCase(signOutThunk.fulfilled, (state) => {
         state.isLoading = false;
@@ -57,10 +58,10 @@ export const slice = createSlice({
           name: "",
         };
       })
-      .addCase(refreshThunk.pending, (state) => {
+      .addCase(currentUserThunk.pending, (state) => {
         state.isRefresh = true;
       })
-      .addCase(refreshThunk.rejected, (state, { payload }) => {
+      .addCase(currentUserThunk.rejected, (state, { payload }) => {
         state.isRefresh = false;
         state.error = payload;
       })
@@ -75,7 +76,7 @@ export const slice = createSlice({
           signUpThunk.rejected,
           signInThunk.rejected,
           signOutThunk.rejected,
-          refreshThunk.rejected
+          currentUserThunk.rejected
         ),
         (state, { payload }) => {
           state.isLoading = false;

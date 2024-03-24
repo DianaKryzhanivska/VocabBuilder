@@ -9,6 +9,8 @@ export const signUpThunk = createAsyncThunk(
       const response = await instance.post("/users/signup", credentials);
       setToken(response.data.token);
       toast.success(`Welcome ${response.data.name}`);
+      localStorage.setItem("refreshToken", response.data.token);
+      localStorage.setItem("accessToken", response.data.token);
       return response.data;
     } catch (error) {
       if (error.response) {
@@ -35,6 +37,10 @@ export const signInThunk = createAsyncThunk(
       const response = await instance.post("/users/signin", credentials);
       setToken(response.data.token);
       toast.success(`Hello ${response.data.name}`);
+
+      console.log(response);
+      localStorage.setItem("refreshToken", response.data.token);
+      localStorage.setItem("accessToken", response.data.token);
       return response.data;
     } catch (error) {
       toast.error(`Email or password is not valid`);
@@ -50,6 +56,8 @@ export const signOutThunk = createAsyncThunk(
       await instance.post("/users/signout");
       clearToken();
       toast.success(`Bye ${getState().auth.user.name}`);
+      localStorage.clear("refreshToken");
+      localStorage.clear("accessToken");
     } catch (error) {
       switch (error.response.status) {
         case 401:
@@ -63,15 +71,15 @@ export const signOutThunk = createAsyncThunk(
   }
 );
 
-export const refreshThunk = createAsyncThunk(
-  "users/refresh",
-  async (bodyToken, { rejectWithValue, getState }) => {
-    if (bodyToken) {
-      setToken(bodyToken);
-    } else {
-      setToken(getState().auth.token);
+export const currentUserThunk = createAsyncThunk(
+  "users/current",
+  async (_, { rejectWithValue }) => {
+    const accessToken = localStorage.getItem("accessToken");
+    if (!accessToken) {
+      return rejectWithValue("Unable to fetch user");
     }
     try {
+      setToken(accessToken);
       const { data } = await instance.get("/users/current");
       return data;
     } catch (error) {
