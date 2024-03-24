@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { currentUserThunk } from "../redux/auth/operations";
 import { selectIsRefresh } from "../redux/auth/selectors";
+import PrivateRoute from "routes/PrivateRoute";
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -29,9 +30,30 @@ export const App = () => {
           <Route path="login" element={<LoginPage />} />
           <Route path="/" element={<Layout />}>
             <Route index element={<HomePage />} />
-            <Route path="dictionary" element={<DictionaryPage />} />
-            <Route path="recommend" element={<RecommendPage />} />
-            <Route path="training" element={<Training />} />
+            <Route
+              path="dictionary"
+              element={
+                <PrivateRoute>
+                  <DictionaryPage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="recommend"
+              element={
+                <PrivateRoute>
+                  <RecommendPage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="training"
+              element={
+                <PrivateRoute>
+                  <Training />
+                </PrivateRoute>
+              }
+            />
           </Route>
         </Routes>
       )}
