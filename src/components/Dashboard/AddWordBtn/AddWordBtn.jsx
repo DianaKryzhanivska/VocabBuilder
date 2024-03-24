@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import sprite from "../../../images/sprite.svg";
 import { Btn, TrainingLink, Wrapper } from "./AddWordBtn.styled";
 import { NavLink } from "react-router-dom";
+import Modal from "../../../components/Modal/Modal";
 
 const AddWordBtn = () => {
+  const [openModal, setOpenModal] = useState(false);
+  const handleOpenModal = () => {
+    setOpenModal(true);
+  };
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
   return (
     <>
       <Wrapper>
-        <Btn type="button">
+        <Btn type="button" onClick={handleOpenModal}>
           <p>Add word</p>
           <svg>
             <use href={`${sprite}#plus`} />
@@ -20,6 +28,7 @@ const AddWordBtn = () => {
           </svg>
         </TrainingLink>
       </Wrapper>
+      <Modal isOpen={openModal} onClose={handleCloseModal}></Modal>
     </>
   );
 };
