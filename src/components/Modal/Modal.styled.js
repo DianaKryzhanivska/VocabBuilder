@@ -23,11 +23,15 @@ export const Content = styled.div`
   border-radius: 15px;
   background: ${({ theme }) => theme.colors.green};
   z-index: 100;
+`;
+
+export const CloseBtn = styled.button`
+  position: absolute;
+  background: transparent;
+  top: 16px;
+  right: 16px;
 
   & svg {
-    position: absolute;
-    top: 16px;
-    right: 16px;
     width: 24px;
     height: 24px;
   }

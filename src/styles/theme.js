@@ -9,5 +9,7 @@ export const theme = {
     borderGray: "rgba(18, 20, 23, 0.10)",
     background: "#F8F8F8",
     tableBorder: "#DBDBDB",
+    borderLightGray: "#D1D5DB",
+    borderLightWhite: "rgba(252, 252, 252, 0.40)",
   },
 };

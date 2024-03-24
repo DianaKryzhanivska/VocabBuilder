@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect } from "react";
-import { Content, Overlay } from "./Modal.styled";
+import { CloseBtn, Content, Overlay } from "./Modal.styled";
 import sprite from "../../images/sprite.svg";
 
 const Modal = ({ isOpen, onClose, children }) => {
@@ -31,10 +31,12 @@ const Modal = ({ isOpen, onClose, children }) => {
   return (
     <>
       <Overlay onClick={onClose}>
-        <Content onClick={(e) => e.preventDefault()}>
-          <svg onClick={onClose}>
-            <use href={`${sprite}#close`} />
-          </svg>
+        <Content onClick={(e) => e.stopPropagation()}>
+          <CloseBtn onClick={onClose}>
+            <svg>
+              <use href={`${sprite}#close`} />
+            </svg>
+          </CloseBtn>
           {children}
         </Content>
       </Overlay>

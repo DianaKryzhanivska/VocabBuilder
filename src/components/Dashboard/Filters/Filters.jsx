@@ -13,13 +13,17 @@ const customStyles = {
   control: (baseStyles, state) => ({
     ...baseStyles,
     borderRadius: "12px",
-    border: "1px solid rgba(18, 20, 23, 0.10)",
+    border: "1px solid #D1D5DB",
     height: "48px",
     background: "#F8F8F8",
   }),
   valueContainer: (baseStyles, state) => ({
     ...baseStyles,
     paddingLeft: "24px",
+  }),
+  singleValue: (baseStyles, state) => ({
+    ...baseStyles,
+    textTransform: "capitalize",
   }),
   option: (baseStyles, state) => ({
     ...baseStyles,
