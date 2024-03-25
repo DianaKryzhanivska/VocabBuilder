@@ -23,6 +23,12 @@ export const Content = styled.div`
   border-radius: 15px;
   background: ${({ theme }) => theme.colors.green};
   z-index: 100;
+
+  @media only screen and (min-width: 768px) {
+    width: 628px;
+    padding: 48px 64px;
+    border-radius: 30px;
+  }
 `;
 
 export const CloseBtn = styled.button`
@@ -34,5 +40,15 @@ export const CloseBtn = styled.button`
   & svg {
     width: 24px;
     height: 24px;
+  }
+
+  @media only screen and (min-width: 768px) {
+    top: 20px;
+    right: 20px;
+
+    & svg {
+      width: 32px;
+      height: 32px;
+    }
   }
 `;

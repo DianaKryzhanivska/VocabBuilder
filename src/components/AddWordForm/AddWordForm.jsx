@@ -4,7 +4,9 @@ import {
   CancelBtn,
   Form,
   InputBox,
+  Item,
   LabelBox,
+  SelectWrapper,
   SubmitBtn,
   Text,
   Title,
@@ -92,14 +94,16 @@ const AddWordForm = ({ onClose }) => {
         the language base and expanding the vocabulary.
       </Text>
       <Form onSubmit={handleSubmit}>
-        <Select
-          options={options}
-          styles={customStyles}
-          onChange={setCategory}
-          value={category}
-        />
+        <SelectWrapper>
+          <Select
+            options={options}
+            styles={customStyles}
+            onChange={setCategory}
+            value={category}
+          />
+        </SelectWrapper>
         <InputBox>
-          <div>
+          <Item>
             <LabelBox>
               <svg>
                 <use href={`${sprite}#ua`} />
@@ -113,8 +117,8 @@ const AddWordForm = ({ onClose }) => {
               onChange={(e) => setWordUa(e.target.value)}
               value={wordUa}
             />
-          </div>
-          <div>
+          </Item>
+          <Item>
             <LabelBox>
               <svg>
                 <use href={`${sprite}#en`} />
@@ -128,7 +132,7 @@ const AddWordForm = ({ onClose }) => {
               onChange={(e) => setWordEn(e.target.value)}
               value={wordEn}
             />
-          </div>
+          </Item>
         </InputBox>
         <BtnBox>
           <SubmitBtn type="submit">Add</SubmitBtn>

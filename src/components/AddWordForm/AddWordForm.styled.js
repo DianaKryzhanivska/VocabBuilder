@@ -7,6 +7,13 @@ export const Title = styled.h2`
   line-height: 1.17em;
   letter-spacing: -0.48px;
   margin-bottom: 16px;
+
+  @media only screen and (min-width: 768px) {
+    font-size: 40px;
+    line-height: 1.2em;
+    letter-spacing: -0.8px;
+    margin-bottom: 20px;
+  }
 `;
 
 export const Text = styled.p`
@@ -15,6 +22,11 @@ export const Text = styled.p`
   font-weight: 400;
   line-height: 1.5em;
   margin-bottom: 16px;
+
+  @media only screen and (min-width: 768px) {
+    font-size: 20px;
+    margin-bottom: 32px;
+  }
 `;
 
 export const Form = styled.form`
@@ -39,6 +51,25 @@ export const Form = styled.form`
     font-weight: 500;
     line-height: 1.5em;
   }
+
+  @media only screen and (min-width: 768px) {
+    & label {
+      font-size: 16px;
+      line-height: 1.5em;
+    }
+
+    & input {
+      width: 354px;
+      padding: 16px 18px;
+      font-weight: 400;
+    }
+  }
+`;
+
+export const SelectWrapper = styled.div`
+  @media only screen and (min-width: 768px) {
+    width: 204px;
+  }
 `;
 
 export const InputBox = styled.div`
@@ -46,6 +77,15 @@ export const InputBox = styled.div`
   flex-direction: column;
   gap: 16px;
   margin-bottom: 32px;
+`;
+
+export const Item = styled.div`
+  @media only screen and (min-width: 768px) {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 32px;
+    justify-content: flex-end;
+  }
 `;
 
 export const LabelBox = styled.div`
@@ -58,11 +98,22 @@ export const LabelBox = styled.div`
     width: 28px;
     height: 28px;
   }
+
+  @media only screen and (min-width: 768px) {
+    & svg {
+      width: 32px;
+      height: 32px;
+    }
+  }
 `;
 
 export const BtnBox = styled.div`
   display: flex;
   gap: 8px;
+
+  @media only screen and (min-width: 768px) {
+    gap: 10px;
+  }
 `;
 
 export const SubmitBtn = styled.button`
@@ -73,6 +124,11 @@ export const SubmitBtn = styled.button`
   font-size: 16px;
   font-weight: 700;
   line-height: 1.5em;
+
+  @media only screen and (min-width: 768px) {
+    padding: 14px 104px;
+    font-size: 18px;
+  }
 `;
 
 export const CancelBtn = styled.button`
@@ -84,4 +140,9 @@ export const CancelBtn = styled.button`
   font-size: 16px;
   font-weight: 700;
   line-height: 1.5em;
+
+  @media only screen and (min-width: 768px) {
+    padding: 14px 92px;
+    font-size: 18px;
+  }
 `;
