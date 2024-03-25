@@ -62,8 +62,8 @@ export const slice = createSlice({
       .addCase(createWordThunk.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        state.words.push(payload);
-        state.own.push(payload);
+        state.words = [...state.words, payload];
+        state.own = [...state.own, payload];
       })
       .addCase(createWordThunk.pending, (state, { payload }) => {
         state.isLoading = true;
