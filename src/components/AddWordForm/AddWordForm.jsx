@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   BtnBox,
   CancelBtn,
@@ -10,9 +10,10 @@ import {
   Title,
 } from "./AddWordForm.styled";
 import Select from "react-select";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectCategories } from "../../redux/word/selectors";
 import sprite from "../../images/sprite.svg";
+import { createWordThunk } from "../../redux/word/operations";
 
 const customStyles = {
   container: (baseStyles, state) => ({
@@ -58,11 +59,31 @@ const customStyles = {
 };
 
 const AddWordForm = ({ onClose }) => {
+  const dispatch = useDispatch();
   const categories = useSelector(selectCategories);
   const options = categories?.map((category) => ({
     value: category,
     label: category,
   }));
+
+  const [category, setCategory] = useState("");
+  const [wordUa, setWordUa] = useState("");
+  const [wordEn, setWordEn] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formData = {
+      category: category.value,
+      ua: wordUa,
+      en: wordEn,
+    };
+    console.log(formData);
+    dispatch(createWordThunk(formData));
+    setCategory("");
+    setWordUa("");
+    setWordEn("");
+  };
+
   return (
     <>
       <Title>Add word</Title>
@@ -70,8 +91,13 @@ const AddWordForm = ({ onClose }) => {
         Adding a new word to the dictionary is an important step in enriching
         the language base and expanding the vocabulary.
       </Text>
-      <Form>
-        <Select options={options} styles={customStyles} />
+      <Form onSubmit={handleSubmit}>
+        <Select
+          options={options}
+          styles={customStyles}
+          onChange={setCategory}
+          value={category}
+        />
         <InputBox>
           <div>
             <LabelBox>
@@ -80,7 +106,13 @@ const AddWordForm = ({ onClose }) => {
               </svg>
               <label htmlFor="ua">Ukrainian</label>
             </LabelBox>
-            <input type="text" id="ua" placeholder="Працювати" />
+            <input
+              type="text"
+              id="ua"
+              placeholder="Працювати"
+              onChange={(e) => setWordUa(e.target.value)}
+              value={wordUa}
+            />
           </div>
           <div>
             <LabelBox>
@@ -89,7 +121,13 @@ const AddWordForm = ({ onClose }) => {
               </svg>
               <label htmlFor="en">English</label>
             </LabelBox>
-            <input type="text" id="en" placeholder="Work" />
+            <input
+              type="text"
+              id="en"
+              placeholder="Work"
+              onChange={(e) => setWordEn(e.target.value)}
+              value={wordEn}
+            />
           </div>
         </InputBox>
         <BtnBox>

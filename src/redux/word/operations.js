@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import instance from "../../redux/instance";
+import { toast } from "react-toastify";
 
 export const getCategoriesThunk = createAsyncThunk(
   "words/categories",
@@ -35,6 +36,31 @@ export const getSearchWordsThunk = createAsyncThunk(
       );
       return response.data.results;
     } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const createWordThunk = createAsyncThunk(
+  "words/create",
+  async (formData, { rejectWithValue }) => {
+    const { en } = formData;
+    try {
+      const response = await instance.post(`/words/create`, formData);
+      toast.success(`Word ${en} successfully added.`);
+      console.log(response);
+      return response.data;
+    } catch (error) {
+      switch (error.response.status) {
+        case 400:
+          toast.error(`Bad request (invalid request body)`);
+          break;
+        case 409:
+          toast.error(`Such a word exists`);
+          break;
+        default:
+          toast.error(`Something went wrong. Please try again`);
+      }
       return rejectWithValue(error.message);
     }
   }

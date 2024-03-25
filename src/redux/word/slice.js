@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
+  createWordThunk,
   getAllWordsThunk,
   getCategoriesThunk,
   getSearchWordsThunk,
@@ -55,6 +56,19 @@ export const slice = createSlice({
         state.isLoading = true;
       })
       .addCase(getSearchWordsThunk.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      .addCase(createWordThunk.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        state.words.push(payload);
+        state.own.push(payload);
+      })
+      .addCase(createWordThunk.pending, (state, { payload }) => {
+        state.isLoading = true;
+      })
+      .addCase(createWordThunk.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
       });
