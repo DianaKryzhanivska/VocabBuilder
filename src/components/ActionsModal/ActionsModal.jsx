@@ -15,14 +15,11 @@ const ActionsModal = ({ isOpen, onClose }) => {
   useEffect(() => {
     if (isOpen) {
       document.addEventListener("keydown", handleKeyDown);
-      //   document.body.style.overflow = "hidden";
     } else {
       document.removeEventListener("keydown", handleKeyDown);
-      //   document.body.style.overflow = "auto";
     }
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
-      //   document.body.style.overflow = "auto";
     };
   }, [isOpen, handleKeyDown]);
 

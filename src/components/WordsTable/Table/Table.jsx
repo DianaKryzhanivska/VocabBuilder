@@ -19,12 +19,14 @@ const Table = ({ columns, data }) => {
 
   const [openActionsModalIds, setOpenActionsModalIds] = useState([]);
 
-  const handleOpenActionsModal = (rowId) => {
-    setOpenActionsModalIds([...openActionsModalIds, rowId]);
-  };
-
-  const handleCloseActionsModal = (rowId) => {
-    setOpenActionsModalIds(openActionsModalIds.filter((id) => id !== rowId));
+  const toggleIsOpenActionsModal = (rowId) => {
+    setOpenActionsModalIds((prevIds) => {
+      if (prevIds.includes(rowId)) {
+        return prevIds.filter((id) => id !== rowId);
+      } else {
+        return [...prevIds, rowId];
+      }
+    });
   };
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
@@ -71,7 +73,7 @@ const Table = ({ columns, data }) => {
                       <ActionsBtnContainer>
                         <ActionsBtn
                           type="button"
-                          onClick={() => handleOpenActionsModal(row.id)}
+                          onClick={() => toggleIsOpenActionsModal(row.id)}
                         >
                           <svg width={12} height={22}>
                             <use href={`${sprite}#dots`} />
@@ -79,7 +81,7 @@ const Table = ({ columns, data }) => {
                         </ActionsBtn>
                         <ActionsModal
                           isOpen={openActionsModalIds.includes(row.id)}
-                          onClose={() => handleCloseActionsModal(row.id)}
+                          onClose={() => toggleIsOpenActionsModal(row.id)}
                         />
                       </ActionsBtnContainer>
                     </td>

@@ -17,7 +17,7 @@ export const Wrapper = styled.div`
 export const TableContainer = styled.div`
   border-radius: 8px 8px 0 0;
   border: none;
-  overflow: hidden;
+  overflow: auto;
 
   @media only screen and (min-width: 768px) {
     border-radius: 8px;
