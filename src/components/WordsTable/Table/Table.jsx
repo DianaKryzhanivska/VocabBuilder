@@ -17,14 +17,14 @@ const Table = ({ columns, data }) => {
     query: "(min-width: 768px)",
   });
 
-  const [openActionsModal, setOpenActionsModal] = useState(false);
+  const [openActionsModalIds, setOpenActionsModalIds] = useState([]);
 
-  const handleOpenActionsModal = () => {
-    setOpenActionsModal(true);
+  const handleOpenActionsModal = (rowId) => {
+    setOpenActionsModalIds([...openActionsModalIds, rowId]);
   };
 
-  const handleCloseActionsModal = () => {
-    setOpenActionsModal(false);
+  const handleCloseActionsModal = (rowId) => {
+    setOpenActionsModalIds(openActionsModalIds.filter((id) => id !== rowId));
   };
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
@@ -71,15 +71,15 @@ const Table = ({ columns, data }) => {
                       <ActionsBtnContainer>
                         <ActionsBtn
                           type="button"
-                          onClick={handleOpenActionsModal}
+                          onClick={() => handleOpenActionsModal(row.id)}
                         >
                           <svg width={12} height={22}>
                             <use href={`${sprite}#dots`} />
                           </svg>
                         </ActionsBtn>
                         <ActionsModal
-                          isOpen={openActionsModal}
-                          onClose={handleCloseActionsModal}
+                          isOpen={openActionsModalIds.includes(row.id)}
+                          onClose={() => handleCloseActionsModal(row.id)}
                         />
                       </ActionsBtnContainer>
                     </td>
