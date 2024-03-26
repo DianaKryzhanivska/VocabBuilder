@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTable } from "react-table";
 import {
   ActionsBtn,
+  ActionsBtnContainer,
   BoxWithIcon,
   TableContainer,
   TableItem,
@@ -9,11 +10,23 @@ import {
 } from "./Table.styled";
 import sprite from "../../../images/sprite.svg";
 import { useMediaQuery } from "react-responsive";
+import ActionsModal from "components/ActionsModal/ActionsModal";
 
 const Table = ({ columns, data }) => {
   const isTabletOrDesktop = useMediaQuery({
     query: "(min-width: 768px)",
   });
+
+  const [openActionsModal, setOpenActionsModal] = useState(false);
+
+  const handleOpenActionsModal = () => {
+    setOpenActionsModal(true);
+  };
+
+  const handleCloseActionsModal = () => {
+    setOpenActionsModal(false);
+  };
+
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({ columns, data });
   return (
@@ -55,11 +68,20 @@ const Table = ({ columns, data }) => {
                       <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
                     ))}
                     <td>
-                      <ActionsBtn type="button">
-                        <svg width={12} height={22}>
-                          <use href={`${sprite}#dots`} />
-                        </svg>
-                      </ActionsBtn>
+                      <ActionsBtnContainer>
+                        <ActionsBtn
+                          type="button"
+                          onClick={handleOpenActionsModal}
+                        >
+                          <svg width={12} height={22}>
+                            <use href={`${sprite}#dots`} />
+                          </svg>
+                        </ActionsBtn>
+                        <ActionsModal
+                          isOpen={openActionsModal}
+                          onClose={handleCloseActionsModal}
+                        />
+                      </ActionsBtnContainer>
                     </td>
                   </tr>
                 );

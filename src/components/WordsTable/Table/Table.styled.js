@@ -71,6 +71,10 @@ export const BoxWithIcon = styled.div`
   gap: 10px;
 `;
 
+export const ActionsBtnContainer = styled.div`
+  position: relative;
+`;
+
 export const ActionsBtn = styled.button`
   background: transparent;
 `;

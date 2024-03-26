@@ -77,6 +77,10 @@ export const InputBox = styled.div`
   flex-direction: column;
   gap: 16px;
   margin-bottom: 32px;
+
+  @media only screen and (min-width: 1440px) {
+    gap: 18px;
+  }
 `;
 
 export const Item = styled.div`
