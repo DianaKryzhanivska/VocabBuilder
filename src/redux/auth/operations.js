@@ -37,8 +37,6 @@ export const signInThunk = createAsyncThunk(
       const response = await instance.post("/users/signin", credentials);
       setToken(response.data.token);
       toast.success(`Hello ${response.data.name}`);
-
-      console.log(response);
       localStorage.setItem("refreshToken", response.data.token);
       localStorage.setItem("accessToken", response.data.token);
       return response.data;
