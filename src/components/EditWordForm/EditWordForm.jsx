@@ -7,9 +7,13 @@ import {
   SubmitBtn,
 } from "./EditWordForm.styled";
 import sprite from "../../images/sprite.svg";
+import { useDispatch } from "react-redux";
+import { editWordThunk } from "../../redux/word/operations";
 
 const EditWordForm = ({ onClose, wordData }) => {
   console.log("wordData: ", wordData);
+  const dispatch = useDispatch();
+
   const [wordUa, setWordUa] = useState("");
   const [wordEn, setWordEn] = useState("");
 
@@ -24,11 +28,15 @@ const EditWordForm = ({ onClose, wordData }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const editFormData = {
-      en: wordEn,
-      ua: wordUa,
-      category: wordData.category,
+      id: wordData._id,
+      body: {
+        en: wordEn,
+        ua: wordUa,
+        category: wordData.category,
+      },
     };
     console.log("editFormData: ", editFormData);
+    dispatch(editWordThunk(editFormData));
     onClose();
   };
 

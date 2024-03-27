@@ -86,3 +86,26 @@ export const deleteWordThunk = createAsyncThunk(
     }
   }
 );
+
+export const editWordThunk = createAsyncThunk(
+  "words/edit",
+  async ({ id, body }, { rejectWithValue }) => {
+    try {
+      const response = await instance.patch(`/words/edit/${id}`, body);
+      console.log(response);
+      return response.data;
+    } catch (error) {
+      switch (error.response.status) {
+        case 400:
+          toast.error(`Bad request (invalid request body)`);
+          break;
+        case 403:
+          toast.error(`You don't have right to edit this word`);
+          break;
+        default:
+          toast.error(`Something went wrong. Please try again`);
+      }
+      return rejectWithValue(error.message);
+    }
+  }
+);
