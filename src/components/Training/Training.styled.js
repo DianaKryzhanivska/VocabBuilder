@@ -25,6 +25,11 @@ export const Wrapper = styled.div`
   @media only screen and (min-width: 768px) {
     margin-bottom: 40px;
   }
+
+  @media only screen and (min-width: 1440px) {
+    margin-bottom: 80px;
+    display: flex;
+  }
 `;
 
 export const InputBox = styled.div`
@@ -45,6 +50,15 @@ export const InputBox = styled.div`
     & input {
       width: 668px;
       height: 282px;
+    }
+  }
+
+  @media only screen and (min-width: 1440px) {
+    & input {
+      width: 602px;
+      height: 302px;
+      border: none;
+      border-right: 1px solid ${({ theme }) => theme.colors.tableBorder};
     }
   }
 `;
@@ -80,6 +94,10 @@ export const LabelBox = styled.div`
       font-size: 16px;
       line-height: 1.5em;
     }
+  }
+
+  @media only screen and (min-width: 1440px) {
+    bottom: 248px;
   }
 `;
 
@@ -117,6 +135,11 @@ export const Box = styled.div`
   @media only screen and (min-width: 768px) {
     width: 668px;
     height: 282px;
+  }
+
+  @media only screen and (min-width: 1440px) {
+    width: 602px;
+    height: 302px;
   }
 `;
 
