@@ -82,7 +82,7 @@ const Table = ({ columns, data }) => {
                         <ActionsModal
                           isOpen={openActionsModalIds.includes(row.id)}
                           onClose={() => toggleIsOpenActionsModal(row.id)}
-                          wordId={row.original._id}
+                          wordData={row.original}
                         />
                       </ActionsBtnContainer>
                     </td>

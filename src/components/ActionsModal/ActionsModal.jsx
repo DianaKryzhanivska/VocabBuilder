@@ -6,7 +6,7 @@ import { deleteWordThunk } from "../../redux/word/operations";
 import Modal from "../Modal/Modal";
 import EditWordForm from "../EditWordForm/EditWordForm";
 
-const ActionsModal = ({ isOpen, onClose, wordId }) => {
+const ActionsModal = ({ isOpen, onClose, wordData }) => {
   const dispatch = useDispatch();
   const [openEditModal, setOpenEditModal] = useState(false);
 
@@ -58,7 +58,10 @@ const ActionsModal = ({ isOpen, onClose, wordId }) => {
             </svg>
             <p>Edit</p>
           </ActionBtn>
-          <ActionBtn type="button" onClick={() => handleDeleteWord(wordId)}>
+          <ActionBtn
+            type="button"
+            onClick={() => handleDeleteWord(wordData._id)}
+          >
             <svg>
               <use href={`${sprite}#delete`} />
             </svg>
@@ -67,7 +70,7 @@ const ActionsModal = ({ isOpen, onClose, wordId }) => {
         </Content>
       </Overlay>
       <Modal isOpen={openEditModal} onClose={handleCloseEditModal}>
-        <EditWordForm onClose={handleCloseEditModal} />
+        <EditWordForm onClose={handleCloseEditModal} wordData={wordData} />
       </Modal>
     </>
   );
