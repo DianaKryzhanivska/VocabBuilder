@@ -3,6 +3,7 @@ import {
   BtnBox,
   CancelBtn,
   InputBox,
+  Item,
   LabelBox,
   SubmitBtn,
 } from "./EditWordForm.styled";
@@ -44,7 +45,7 @@ const EditWordForm = ({ onClose, wordData }) => {
     <>
       <form onSubmit={handleSubmit}>
         <InputBox>
-          <div>
+          <Item>
             <LabelBox>
               <svg>
                 <use href={`${sprite}#ua`} />
@@ -56,11 +57,10 @@ const EditWordForm = ({ onClose, wordData }) => {
               name="ua"
               id="ua"
               placeholder={wordData.ua}
-              // value={wordData.ua}
               onChange={handleUaChange}
             />
-          </div>
-          <div>
+          </Item>
+          <Item>
             <LabelBox>
               <svg>
                 <use href={`${sprite}#en`} />
@@ -75,7 +75,7 @@ const EditWordForm = ({ onClose, wordData }) => {
               // value={wordData.en}
               onChange={handleEnChange}
             />
-          </div>
+          </Item>
         </InputBox>
         <BtnBox>
           <SubmitBtn type="submit">Save</SubmitBtn>
