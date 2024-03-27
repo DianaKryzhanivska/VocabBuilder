@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
   createWordThunk,
+  deleteWordThunk,
   getAllWordsThunk,
   getCategoriesThunk,
   getSearchWordsThunk,
@@ -50,6 +51,7 @@ export const slice = createSlice({
       .addCase(getSearchWordsThunk.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
+        state.words = payload;
         state.filtered = payload;
       })
       .addCase(getSearchWordsThunk.pending, (state, { payload }) => {
@@ -62,13 +64,26 @@ export const slice = createSlice({
       .addCase(createWordThunk.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        state.words = [...state.words, payload];
-        state.own = [...state.own, payload];
+        state.words = [payload, ...state.words];
+        state.own = [payload, ...state.own];
       })
       .addCase(createWordThunk.pending, (state, { payload }) => {
         state.isLoading = true;
       })
       .addCase(createWordThunk.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      .addCase(deleteWordThunk.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.words = state.words.filter(({ _id }) => _id !== payload.id);
+        state.own = state.own.filter(({ _id }) => _id !== payload.id);
+        state.error = null;
+      })
+      .addCase(deleteWordThunk.pending, (state, { payload }) => {
+        state.isLoading = false;
+      })
+      .addCase(deleteWordThunk.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
       });

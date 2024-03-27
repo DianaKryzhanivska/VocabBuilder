@@ -38,4 +38,9 @@ export const ActionBtn = styled.button`
     fill: #fff;
     stroke: ${({ theme }) => theme.colors.green};
   }
+
+  @media only screen and (min-width: 768px) {
+    font-size: 16px;
+    line-height: 1.5em;
+  }
 `;

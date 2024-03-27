@@ -1,8 +1,12 @@
 import React, { useCallback, useEffect } from "react";
 import { ActionBtn, Content, Overlay } from "./ActionsModal.styled";
 import sprite from "../../images/sprite.svg";
+import { useDispatch } from "react-redux";
+import { deleteWordThunk } from "../../redux/word/operations";
 
-const ActionsModal = ({ isOpen, onClose }) => {
+const ActionsModal = ({ isOpen, onClose, wordId }) => {
+  const dispatch = useDispatch();
+
   const handleKeyDown = useCallback(
     (e) => {
       if (e.key === "Escape") {
@@ -23,6 +27,12 @@ const ActionsModal = ({ isOpen, onClose }) => {
     };
   }, [isOpen, handleKeyDown]);
 
+  const handleDeleteWord = (wordId) => {
+    console.log("wordId", wordId);
+    dispatch(deleteWordThunk(wordId));
+    onClose();
+  };
+
   if (!isOpen) {
     return null;
   }
@@ -37,7 +47,7 @@ const ActionsModal = ({ isOpen, onClose }) => {
             </svg>
             <p>Edit</p>
           </ActionBtn>
-          <ActionBtn type="button">
+          <ActionBtn type="button" onClick={() => handleDeleteWord(wordId)}>
             <svg>
               <use href={`${sprite}#delete`} />
             </svg>

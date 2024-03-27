@@ -65,3 +65,24 @@ export const createWordThunk = createAsyncThunk(
     }
   }
 );
+
+export const deleteWordThunk = createAsyncThunk(
+  "words/delete",
+  async (id, { rejectWithValue }) => {
+    try {
+      const response = await instance.delete(`/words/delete/${id}`);
+      console.log(response);
+      toast.success(`This word was deleted`);
+      return response.data;
+    } catch (error) {
+      switch (error.response.status) {
+        case 404:
+          toast.error(`You are not allowed to delete this word`);
+          break;
+        default:
+          toast.error(`Something went wrong. Please try again`);
+      }
+      return rejectWithValue(error.message);
+    }
+  }
+);

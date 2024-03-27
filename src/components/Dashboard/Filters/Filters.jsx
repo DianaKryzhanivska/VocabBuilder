@@ -62,7 +62,7 @@ const Filters = () => {
       keyword: searchedKeyWord,
       category: selectedCategory.value,
       page: 1,
-      limit: 7,
+      limit: 25,
     };
     dispatch(getSearchWordsThunk(searchedWords));
     setSearchedKeyWord("");
