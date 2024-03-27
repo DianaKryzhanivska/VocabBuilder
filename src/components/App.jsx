@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import Layout from "./Layout";
 import RegisterPage from "pages/RegisterPage";
 import LoginPage from "pages/LoginPage";
-import Training from "pages/Training";
+import TrainingPage from "pages/TrainingPage";
 import HomePage from "pages/HomePage";
 import DictionaryPage from "pages/DictionaryPage";
 import RecommendPage from "pages/RecommendPage";
@@ -50,7 +50,7 @@ export const App = () => {
               path="training"
               element={
                 <PrivateRoute>
-                  <Training />
+                  <TrainingPage />
                 </PrivateRoute>
               }
             />
