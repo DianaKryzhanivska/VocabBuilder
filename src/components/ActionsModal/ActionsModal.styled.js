@@ -20,7 +20,7 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
-  z-index: 100;
+  z-index: 50;
 `;
 
 export const ActionBtn = styled.button`
