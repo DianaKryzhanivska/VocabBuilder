@@ -109,3 +109,19 @@ export const editWordThunk = createAsyncThunk(
     }
   }
 );
+
+export const getOwnWordsThunk = createAsyncThunk(
+  "words/own",
+  async (params, { rejectWithValue }) => {
+    try {
+      const { keyword = "", category = "", page = "", limit = "" } = params;
+      const response = await instance.get(
+        `/words/own?keyword=${keyword}&category=${category}&page=${page}&limit=${limit}`
+      );
+      console.log(response);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);

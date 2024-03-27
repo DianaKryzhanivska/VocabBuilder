@@ -5,6 +5,7 @@ import {
   editWordThunk,
   getAllWordsThunk,
   getCategoriesThunk,
+  getOwnWordsThunk,
   getSearchWordsThunk,
 } from "./operations";
 
@@ -98,6 +99,18 @@ export const slice = createSlice({
         state.isLoading = true;
       })
       .addCase(editWordThunk.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      .addCase(getOwnWordsThunk.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.own = payload.results;
+        state.error = null;
+      })
+      .addCase(getOwnWordsThunk.pending, (state, { payload }) => {
+        state.isLoading = true;
+      })
+      .addCase(getOwnWordsThunk.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
       });
