@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
 import {
-  Box,
   BtnBox,
   CancelBtn,
   Container,
   FormWrapper,
-  InputBox,
+  InputEn,
+  InputUa,
   LabelBox,
   NextBtn,
   SubmitBtn,
-  Word,
   Wrapper,
 } from "./Training.styled";
 import sprite from "../../images/sprite.svg";
@@ -18,11 +17,14 @@ import { getTasksThunk, postAnswersThunk } from "../../redux/word/operations";
 import { selectTasks } from "../../redux/word/selectors";
 import Modal from "../Modal/Modal";
 import WellDoneModal from "components/WellDoneModal/WellDoneModal";
+import { useNavigate } from "react-router-dom";
 
 const Training = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const tasks = useSelector(selectTasks);
-  const [translation, setTranslation] = useState("");
+  const [translationEn, setTranslationEn] = useState("");
+  const [translationUa, setTranslationUa] = useState("");
   const [answer, setAnswer] = useState({});
   const [userAnswers, setUserAnswers] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -40,12 +42,13 @@ const Training = () => {
 
   const handleCloseModal = () => {
     setOpenModal(false);
+    navigate("/dictionary");
   };
 
-  const handleChangeTranslation = (e) => {
+  const handleChangeTranslationEn = (e) => {
     const task = tasks[currentIndex];
     console.log(task);
-    setTranslation(e.target.value);
+    setTranslationEn(e.target.value);
     setAnswer({
       _id: task._id,
       en: e.target.value,
@@ -54,9 +57,22 @@ const Training = () => {
     });
   };
 
+  const handleChangeTranslationUa = (e) => {
+    const task = tasks[currentIndex];
+    console.log(task);
+    setTranslationUa(e.target.value);
+    setAnswer({
+      _id: task._id,
+      en: task.en,
+      ua: e.target.value,
+      task: task.task,
+    });
+  };
+
   const handleNextClick = () => {
     setUserAnswers([...userAnswers, answer]);
-    setTranslation("");
+    setTranslationEn("");
+    setTranslationUa("");
     setAnswer({});
     if (currentIndex < tasks.length - 1) {
       setCurrentIndex(currentIndex + 1);
@@ -67,7 +83,8 @@ const Training = () => {
     e.preventDefault();
     console.log("userAnswers", userAnswers);
     dispatch(postAnswersThunk(userAnswers));
-    setTranslation("");
+    setTranslationEn("");
+    setTranslationUa("");
     handleOpenModal();
   };
 
@@ -77,19 +94,19 @@ const Training = () => {
         <FormWrapper>
           <form onSubmit={handleSubmit}>
             <Wrapper>
-              <InputBox>
+              <InputEn>
                 <input
                   type="text"
-                  name="ua"
-                  placeholder="Введіть переклад"
-                  value={translation}
-                  onChange={handleChangeTranslation}
+                  name="en"
+                  placeholder={tasks[currentIndex]?.en}
+                  value={translationEn}
+                  onChange={handleChangeTranslationEn}
                 />
                 <LabelBox>
                   <svg>
                     <use href={`${sprite}#en`} />
                   </svg>
-                  <label htmlFor="ua">English</label>
+                  <label htmlFor="en">English</label>
                 </LabelBox>
                 {currentIndex !== tasks.length - 1 && (
                   <NextBtn type="button" onClick={handleNextClick}>
@@ -99,16 +116,22 @@ const Training = () => {
                     </svg>
                   </NextBtn>
                 )}
-              </InputBox>
-              <Box>
-                <Word>{tasks[currentIndex]?.ua}</Word>
+              </InputEn>
+              <InputUa>
+                <input
+                  type="text"
+                  name="ua"
+                  placeholder={tasks[currentIndex]?.ua}
+                  value={translationUa}
+                  onChange={handleChangeTranslationUa}
+                />
                 <LabelBox>
                   <svg>
                     <use href={`${sprite}#ua`} />
                   </svg>
                   <label htmlFor="ua">Ukrainian</label>
                 </LabelBox>
-              </Box>
+              </InputUa>
             </Wrapper>
             <BtnBox>
               <SubmitBtn type="submit">Save</SubmitBtn>

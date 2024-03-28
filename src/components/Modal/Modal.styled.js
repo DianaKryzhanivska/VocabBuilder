@@ -17,6 +17,7 @@ export const Overlay = styled.div`
 export const Content = styled.div`
   position: relative;
   height: auto;
+  max-height: 630px;
   width: 343px;
   box-sizing: border-box;
   overflow-y: auto;

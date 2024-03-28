@@ -22,6 +22,15 @@ export const FormWrapper = styled.div`
 export const Wrapper = styled.div`
   margin-bottom: 116px;
 
+  & input {
+    padding: 22px;
+    width: 343px;
+    height: 195px;
+    box-sizing: border-box;
+    border: none;
+    background: ${({ theme }) => theme.colors.white};
+  }
+
   @media only screen and (min-width: 768px) {
     margin-bottom: 40px;
   }
@@ -32,17 +41,11 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const InputBox = styled.div`
+export const InputEn = styled.div`
   position: relative;
 
   & input {
-    padding: 22px;
-    width: 343px;
-    height: 195px;
-    box-sizing: border-box;
     border-radius: 8px 8px 0px 0px;
-    border: none;
-    background: ${({ theme }) => theme.colors.white};
     border-bottom: 1px solid ${({ theme }) => theme.colors.tableBorder};
   }
 
@@ -123,14 +126,12 @@ export const NextBtn = styled.button`
   }
 `;
 
-export const Box = styled.div`
+export const InputUa = styled.div`
   position: relative;
-  padding: 22px;
-  width: 343px;
-  height: 195px;
-  box-sizing: border-box;
-  border-radius: 0px 0px 8px 8px;
-  background: ${({ theme }) => theme.colors.white};
+
+  & input {
+    border-radius: 0px 0px 8px 8px;
+  }
 
   @media only screen and (min-width: 768px) {
     width: 668px;
