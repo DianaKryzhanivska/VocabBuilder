@@ -150,3 +150,16 @@ export const getTasksThunk = createAsyncThunk(
     }
   }
 );
+
+export const postAnswersThunk = createAsyncThunk(
+  "words/answers",
+  async (body, { rejectWithValue }) => {
+    try {
+      const response = await instance.post("/words/answers", body);
+      console.log(response);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);

@@ -9,6 +9,7 @@ import {
   getSearchWordsThunk,
   getStatisticsThunk,
   getTasksThunk,
+  postAnswersThunk,
 } from "./operations";
 
 const initialState = {
@@ -137,6 +138,18 @@ export const slice = createSlice({
         state.isLoading = true;
       })
       .addCase(getTasksThunk.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      .addCase(postAnswersThunk.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.answers = payload;
+        state.error = null;
+      })
+      .addCase(postAnswersThunk.pending, (state, { payload }) => {
+        state.isLoading = true;
+      })
+      .addCase(postAnswersThunk.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
       });
