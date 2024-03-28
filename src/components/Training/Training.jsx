@@ -95,8 +95,8 @@ const Training = () => {
 
   return (
     <>
-      {tasks.length > 0 ? (
-        <Container>
+      <Container>
+        {tasks.length > 0 ? (
           <FormWrapper>
             <form onSubmit={handleSubmit}>
               <Wrapper>
@@ -147,10 +147,10 @@ const Training = () => {
               </BtnBox>
             </form>
           </FormWrapper>
-        </Container>
-      ) : (
-        <NotFoundWords />
-      )}
+        ) : (
+          <NotFoundWords />
+        )}
+      </Container>
       <Modal isOpen={openModal} onClose={handleCloseModal}>
         <WellDoneModal onClose={handleCloseModal} />
       </Modal>
