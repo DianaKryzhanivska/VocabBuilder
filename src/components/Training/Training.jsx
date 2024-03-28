@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Box,
   BtnBox,
@@ -13,8 +13,20 @@ import {
   Wrapper,
 } from "./Training.styled";
 import sprite from "../../images/sprite.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { getTasksThunk } from "../../redux/word/operations";
+import { selectTasks } from "../../redux/word/selectors";
 
 const Training = () => {
+  const dispatch = useDispatch();
+  const tasks = useSelector(selectTasks);
+
+  useEffect(() => {
+    dispatch(getTasksThunk());
+  }, [dispatch]);
+
+  console.log("tasks", tasks);
+
   return (
     <>
       <Container>

@@ -8,6 +8,7 @@ import {
   getOwnWordsThunk,
   getSearchWordsThunk,
   getStatisticsThunk,
+  getTasksThunk,
 } from "./operations";
 
 const initialState = {
@@ -124,6 +125,18 @@ export const slice = createSlice({
         state.isLoading = true;
       })
       .addCase(getStatisticsThunk.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      .addCase(getTasksThunk.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.tasks = payload.tasks;
+        state.error = null;
+      })
+      .addCase(getTasksThunk.pending, (state, { payload }) => {
+        state.isLoading = true;
+      })
+      .addCase(getTasksThunk.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
       });

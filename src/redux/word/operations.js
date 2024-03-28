@@ -137,3 +137,16 @@ export const getStatisticsThunk = createAsyncThunk(
     }
   }
 );
+
+export const getTasksThunk = createAsyncThunk(
+  "words/tasks",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await instance.get("/words/tasks");
+      console.log(response);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
