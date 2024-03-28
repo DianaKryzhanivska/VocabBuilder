@@ -7,8 +7,8 @@ const Dictionary = () => {
   return (
     <>
       <Container>
-        <Dashboard />
-        <WordsTable />
+        <Dashboard pageType="dictionary" />
+        <WordsTable pageType="dictionary" />
       </Container>
     </>
   );

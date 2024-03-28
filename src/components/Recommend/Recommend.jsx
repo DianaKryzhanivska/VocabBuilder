@@ -7,8 +7,8 @@ const Recommend = () => {
   return (
     <>
       <Container>
-        <Dashboard />
-        <WordsTable />
+        <Dashboard pageType="recommend" />
+        <WordsTable pageType="recommend" />
       </Container>
     </>
   );

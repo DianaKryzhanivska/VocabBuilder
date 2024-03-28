@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getCategoriesThunk,
   getOwnWordsThunk,
+  getSearchWordsThunk,
 } from "../../../redux/word/operations";
 import { selectCategories } from "../../../redux/word/selectors";
 
@@ -43,7 +44,7 @@ const customStyles = {
   }),
 };
 
-const Filters = () => {
+const Filters = ({ pageType }) => {
   const dispatch = useDispatch();
   const categories = useSelector(selectCategories);
   const [searchedKeyWord, setSearchedKeyWord] = useState("");
@@ -64,7 +65,11 @@ const Filters = () => {
       page: 1,
       limit: 7,
     };
-    dispatch(getOwnWordsThunk(searchedWords));
+    if (pageType === "dictionary") {
+      dispatch(getOwnWordsThunk(searchedWords));
+    } else if (pageType === "recommend") {
+      dispatch(getSearchWordsThunk(searchedWords));
+    }
     setSearchedKeyWord("");
     setSelectedCategory("");
   };

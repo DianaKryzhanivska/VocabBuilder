@@ -4,12 +4,12 @@ import { useMediaQuery } from "react-responsive";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAllWords, selectOwnWords } from "../../redux/word/selectors";
 import {
-  getAllWordsThunk,
   getOwnWordsThunk,
+  getSearchWordsThunk,
 } from "../../redux/word/operations";
 import NotFoundWords from "components/Training/NotFoundWords/NotFoundWords";
 
-const WordsTable = () => {
+const WordsTable = ({ pageType }) => {
   const dispatch = useDispatch();
   const own = useSelector(selectOwnWords);
   const allWords = useSelector(selectAllWords);
@@ -18,16 +18,26 @@ const WordsTable = () => {
   });
 
   useEffect(() => {
-    dispatch(
-      getOwnWordsThunk({
-        keyword: "",
-        category: "",
-        page: 1,
-        limit: 7,
-      })
-    );
-    dispatch(getAllWordsThunk());
-  }, [dispatch]);
+    if (pageType === "dictionary") {
+      dispatch(
+        getOwnWordsThunk({
+          keyword: "",
+          category: "",
+          page: 1,
+          limit: 7,
+        })
+      );
+    } else if (pageType === "recommend") {
+      dispatch(
+        getSearchWordsThunk({
+          keyword: "",
+          category: "",
+          page: 1,
+          limit: 7,
+        })
+      );
+    }
+  }, [pageType, dispatch]);
 
   const columns = [
     { Header: "Word", accessor: "en" },
@@ -39,11 +49,11 @@ const WordsTable = () => {
     columns.splice(2, 0, { Header: "Category", accessor: "category" });
   }
 
-  const tableData = own?.length > 0 ? own : allWords;
+  const tableData = pageType === "dictionary" ? own : allWords;
 
   return (
     <>
-      {own?.length > 0 ? (
+      {tableData?.length > 0 ? (
         <Table columns={columns} data={tableData} />
       ) : (
         <NotFoundWords />
