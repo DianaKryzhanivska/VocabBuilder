@@ -1,17 +1,19 @@
 {
   "files": {
     "main.css": "/VocabBuilder/static/css/main.9c33b6b4.css",
-    "main.js": "/VocabBuilder/static/js/main.52b0e5ae.js",
+    "main.js": "/VocabBuilder/static/js/main.ce02af8c.js",
     "static/media/desk-illustration@2x.png": "/VocabBuilder/static/media/desk-illustration@2x.38ef90c96887d97cfb4a.png",
     "static/media/tab-menu-illustration@2x.png": "/VocabBuilder/static/media/tab-menu-illustration@2x.18d95d3ce200bb1060fc.png",
     "static/media/mob-menu-illustration@2x.png": "/VocabBuilder/static/media/mob-menu-illustration@2x.5cec6a70dae99fe86ef1.png",
     "static/media/desk-illustration@1x.png": "/VocabBuilder/static/media/desk-illustration@1x.e9535b2d8f64cbafb6c7.png",
     "static/media/mob-illustration@2x.png": "/VocabBuilder/static/media/mob-illustration@2x.762bf9c6368c925ee728.png",
+    "static/media/tab-report@2x.png": "/VocabBuilder/static/media/tab-report@2x.effd746cfdb9202bbaf5.png",
     "static/media/tab-menu-illustration@1x.png": "/VocabBuilder/static/media/tab-menu-illustration@1x.2c8228c87cde0dae65ab.png",
     "static/media/mob-report@2x.png": "/VocabBuilder/static/media/mob-report@2x.e85029c8d4d0665de7b4.png",
     "static/media/tab-book@2x.png": "/VocabBuilder/static/media/tab-book@2x.d449690519bbc0034b85.png",
     "static/media/mob-menu-illustration@1x.png": "/VocabBuilder/static/media/mob-menu-illustration@1x.4f1a208ca9169c58aabe.png",
     "static/media/mob-illustration@1x.png": "/VocabBuilder/static/media/mob-illustration@1x.fafe318829df3fe2e1a9.png",
+    "static/media/tab-report@1x.png": "/VocabBuilder/static/media/tab-report@1x.297785795e15f2ef2282.png",
     "static/media/mob-book@2x.png": "/VocabBuilder/static/media/mob-book@2x.8bccd64831ae54ab6a73.png",
     "static/media/mob-report@1x.png": "/VocabBuilder/static/media/mob-report@1x.8da94ad722453b301e4e.png",
     "static/media/tab-book@1x.png": "/VocabBuilder/static/media/tab-book@1x.9a872cf583b413f05407.png",
@@ -19,10 +21,10 @@
     "static/media/sprite.svg": "/VocabBuilder/static/media/sprite.19bfe3a9cf9ff4110021217d9ca0ed6a.svg",
     "index.html": "/VocabBuilder/index.html",
     "main.9c33b6b4.css.map": "/VocabBuilder/static/css/main.9c33b6b4.css.map",
-    "main.52b0e5ae.js.map": "/VocabBuilder/static/js/main.52b0e5ae.js.map"
+    "main.ce02af8c.js.map": "/VocabBuilder/static/js/main.ce02af8c.js.map"
   },
   "entrypoints": [
     "static/css/main.9c33b6b4.css",
-    "static/js/main.52b0e5ae.js"
+    "static/js/main.ce02af8c.js"
   ]
 }
