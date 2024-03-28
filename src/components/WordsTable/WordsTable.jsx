@@ -2,21 +2,30 @@ import React, { useEffect } from "react";
 import Table from "./Table/Table";
 import { useMediaQuery } from "react-responsive";
 import { useDispatch, useSelector } from "react-redux";
+import { selectAllWords, selectOwnWords } from "../../redux/word/selectors";
 import {
-  selectAllWords,
-  selectFilteredWords,
-} from "../../redux/word/selectors";
-import { getAllWordsThunk } from "../../redux/word/operations";
+  getAllWordsThunk,
+  getOwnWordsThunk,
+} from "../../redux/word/operations";
+import NotFoundWords from "components/Training/NotFoundWords/NotFoundWords";
 
 const WordsTable = () => {
   const dispatch = useDispatch();
+  const own = useSelector(selectOwnWords);
   const allWords = useSelector(selectAllWords);
-  const filteredWords = useSelector(selectFilteredWords);
   const isTabletOrDesktop = useMediaQuery({
     query: "(min-width: 768px)",
   });
 
   useEffect(() => {
+    dispatch(
+      getOwnWordsThunk({
+        keyword: "",
+        category: "",
+        page: 1,
+        limit: 7,
+      })
+    );
     dispatch(getAllWordsThunk());
   }, [dispatch]);
 
@@ -30,11 +39,15 @@ const WordsTable = () => {
     columns.splice(2, 0, { Header: "Category", accessor: "category" });
   }
 
-  const tableData = filteredWords.length > 0 ? filteredWords : allWords;
+  const tableData = own?.length > 0 ? own : allWords;
 
   return (
     <>
-      <Table columns={columns} data={tableData} />
+      {own?.length > 0 ? (
+        <Table columns={columns} data={tableData} />
+      ) : (
+        <NotFoundWords />
+      )}
     </>
   );
 };

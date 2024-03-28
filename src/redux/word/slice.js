@@ -81,7 +81,7 @@ export const slice = createSlice({
       })
       .addCase(deleteWordThunk.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.words = state.words.filter(({ _id }) => _id !== payload.id);
+        // state.words = state.words.filter(({ _id }) => _id !== payload.id);
         state.own = state.own.filter(({ _id }) => _id !== payload.id);
         state.error = null;
       })
@@ -107,7 +107,7 @@ export const slice = createSlice({
       })
       .addCase(getOwnWordsThunk.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.own = payload.results;
+        state.own = [...payload.results];
         state.error = null;
       })
       .addCase(getOwnWordsThunk.pending, (state, { payload }) => {

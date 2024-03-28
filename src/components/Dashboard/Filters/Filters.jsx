@@ -5,7 +5,7 @@ import Select from "react-select";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getCategoriesThunk,
-  getSearchWordsThunk,
+  getOwnWordsThunk,
 } from "../../../redux/word/operations";
 import { selectCategories } from "../../../redux/word/selectors";
 
@@ -62,9 +62,9 @@ const Filters = () => {
       keyword: searchedKeyWord,
       category: selectedCategory.value,
       page: 1,
-      limit: 25,
+      limit: 7,
     };
-    dispatch(getSearchWordsThunk(searchedWords));
+    dispatch(getOwnWordsThunk(searchedWords));
     setSearchedKeyWord("");
     setSelectedCategory("");
   };

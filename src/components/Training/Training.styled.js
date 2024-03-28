@@ -134,13 +134,17 @@ export const InputUa = styled.div`
   }
 
   @media only screen and (min-width: 768px) {
-    width: 668px;
-    height: 282px;
+    & input {
+      width: 668px;
+      height: 282px;
+    }
   }
 
   @media only screen and (min-width: 1440px) {
-    width: 602px;
-    height: 302px;
+    & input {
+      width: 602px;
+      height: 302px;
+    }
   }
 `;
 

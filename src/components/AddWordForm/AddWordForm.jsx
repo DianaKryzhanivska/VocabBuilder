@@ -84,6 +84,7 @@ const AddWordForm = ({ onClose }) => {
     setCategory("");
     setWordUa("");
     setWordEn("");
+    onClose();
   };
 
   return (

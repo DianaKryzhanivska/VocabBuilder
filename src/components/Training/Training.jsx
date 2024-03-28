@@ -18,6 +18,7 @@ import { selectTasks } from "../../redux/word/selectors";
 import Modal from "../Modal/Modal";
 import WellDoneModal from "components/WellDoneModal/WellDoneModal";
 import { useNavigate } from "react-router-dom";
+import NotFoundWords from "./NotFoundWords/NotFoundWords";
 
 const Training = () => {
   const dispatch = useDispatch();
@@ -88,58 +89,68 @@ const Training = () => {
     handleOpenModal();
   };
 
+  const handleCancelClick = () => {
+    navigate("/dictionary");
+  };
+
   return (
     <>
-      <Container>
-        <FormWrapper>
-          <form onSubmit={handleSubmit}>
-            <Wrapper>
-              <InputEn>
-                <input
-                  type="text"
-                  name="en"
-                  placeholder={tasks[currentIndex]?.en}
-                  value={translationEn}
-                  onChange={handleChangeTranslationEn}
-                />
-                <LabelBox>
-                  <svg>
-                    <use href={`${sprite}#en`} />
-                  </svg>
-                  <label htmlFor="en">English</label>
-                </LabelBox>
-                {currentIndex !== tasks.length - 1 && (
-                  <NextBtn type="button" onClick={handleNextClick}>
-                    <p>Next</p>
+      {tasks.length > 0 ? (
+        <Container>
+          <FormWrapper>
+            <form onSubmit={handleSubmit}>
+              <Wrapper>
+                <InputEn>
+                  <input
+                    type="text"
+                    name="en"
+                    placeholder={tasks[currentIndex]?.en}
+                    value={translationEn}
+                    onChange={handleChangeTranslationEn}
+                  />
+                  <LabelBox>
                     <svg>
-                      <use href={`${sprite}#arrow-right`} />
+                      <use href={`${sprite}#en`} />
                     </svg>
-                  </NextBtn>
-                )}
-              </InputEn>
-              <InputUa>
-                <input
-                  type="text"
-                  name="ua"
-                  placeholder={tasks[currentIndex]?.ua}
-                  value={translationUa}
-                  onChange={handleChangeTranslationUa}
-                />
-                <LabelBox>
-                  <svg>
-                    <use href={`${sprite}#ua`} />
-                  </svg>
-                  <label htmlFor="ua">Ukrainian</label>
-                </LabelBox>
-              </InputUa>
-            </Wrapper>
-            <BtnBox>
-              <SubmitBtn type="submit">Save</SubmitBtn>
-              <CancelBtn type="button">Cancel</CancelBtn>
-            </BtnBox>
-          </form>
-        </FormWrapper>
-      </Container>
+                    <label htmlFor="en">English</label>
+                  </LabelBox>
+                  {currentIndex !== tasks.length - 1 && (
+                    <NextBtn type="button" onClick={handleNextClick}>
+                      <p>Next</p>
+                      <svg>
+                        <use href={`${sprite}#arrow-right`} />
+                      </svg>
+                    </NextBtn>
+                  )}
+                </InputEn>
+                <InputUa>
+                  <input
+                    type="text"
+                    name="ua"
+                    placeholder={tasks[currentIndex]?.ua}
+                    value={translationUa}
+                    onChange={handleChangeTranslationUa}
+                  />
+                  <LabelBox>
+                    <svg>
+                      <use href={`${sprite}#ua`} />
+                    </svg>
+                    <label htmlFor="ua">Ukrainian</label>
+                  </LabelBox>
+                </InputUa>
+              </Wrapper>
+              <BtnBox>
+                <SubmitBtn type="submit">Save</SubmitBtn>
+                <CancelBtn type="button" onClick={handleCancelClick}>
+                  Cancel
+                </CancelBtn>
+              </BtnBox>
+            </form>
+          </FormWrapper>
+        </Container>
+      ) : (
+        <NotFoundWords />
+      )}
       <Modal isOpen={openModal} onClose={handleCloseModal}>
         <WellDoneModal onClose={handleCloseModal} />
       </Modal>

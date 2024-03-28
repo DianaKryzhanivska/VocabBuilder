@@ -40,6 +40,11 @@ export const ImgBox = styled.div`
   margin-top: 51px;
   width: 152px;
   height: 121px;
+
+  @media only screen and (min-width: 768px) {
+    width: 212px;
+    height: 179px;
+  }
 `;
 
 export const Img = styled.img`

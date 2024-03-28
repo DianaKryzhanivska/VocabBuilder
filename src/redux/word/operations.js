@@ -159,6 +159,7 @@ export const postAnswersThunk = createAsyncThunk(
       console.log(response);
       return response.data;
     } catch (error) {
+      toast.error(`Something went wrong. Please try again`);
       return rejectWithValue(error.message);
     }
   }
