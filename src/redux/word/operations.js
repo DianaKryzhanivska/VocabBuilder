@@ -125,3 +125,15 @@ export const getOwnWordsThunk = createAsyncThunk(
     }
   }
 );
+
+export const getStatisticsThunk = createAsyncThunk(
+  "words/statistics",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await instance.get("/words/statistics");
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
