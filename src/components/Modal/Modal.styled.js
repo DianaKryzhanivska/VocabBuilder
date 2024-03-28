@@ -7,6 +7,7 @@ export const Overlay = styled.div`
   top: 0;
   left: 0;
   overflow-y: auto;
+  background: rgba(18, 20, 23, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;

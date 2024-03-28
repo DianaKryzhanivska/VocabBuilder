@@ -11,5 +11,6 @@ export const theme = {
     tableBorder: "#DBDBDB",
     borderLightGray: "#D1D5DB",
     borderLightWhite: "rgba(252, 252, 252, 0.40)",
+    modalSubTitle: "rgba(252, 252, 252, 0.50)",
   },
 };

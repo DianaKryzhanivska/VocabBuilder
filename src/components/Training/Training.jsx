@@ -16,6 +16,8 @@ import sprite from "../../images/sprite.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { getTasksThunk, postAnswersThunk } from "../../redux/word/operations";
 import { selectTasks } from "../../redux/word/selectors";
+import Modal from "../Modal/Modal";
+import WellDoneModal from "components/WellDoneModal/WellDoneModal";
 
 const Training = () => {
   const dispatch = useDispatch();
@@ -24,12 +26,21 @@ const Training = () => {
   const [answer, setAnswer] = useState({});
   const [userAnswers, setUserAnswers] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     dispatch(getTasksThunk());
   }, [dispatch]);
 
   console.log("tasks", tasks);
+
+  const handleOpenModal = () => {
+    setOpenModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
 
   const handleChangeTranslation = (e) => {
     const task = tasks[currentIndex];
@@ -57,6 +68,7 @@ const Training = () => {
     console.log("userAnswers", userAnswers);
     dispatch(postAnswersThunk(userAnswers));
     setTranslation("");
+    handleOpenModal();
   };
 
   return (
@@ -105,6 +117,9 @@ const Training = () => {
           </form>
         </FormWrapper>
       </Container>
+      <Modal isOpen={openModal} onClose={handleCloseModal}>
+        <WellDoneModal onClose={handleCloseModal} />
+      </Modal>
     </>
   );
 };
