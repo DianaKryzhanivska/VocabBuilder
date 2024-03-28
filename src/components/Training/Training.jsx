@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   BtnBox,
@@ -14,12 +14,16 @@ import {
 } from "./Training.styled";
 import sprite from "../../images/sprite.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { getTasksThunk } from "../../redux/word/operations";
+import { getTasksThunk, postAnswersThunk } from "../../redux/word/operations";
 import { selectTasks } from "../../redux/word/selectors";
 
 const Training = () => {
   const dispatch = useDispatch();
   const tasks = useSelector(selectTasks);
+  const [translation, setTranslation] = useState("");
+  const [answer, setAnswer] = useState({});
+  const [userAnswers, setUserAnswers] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     dispatch(getTasksThunk());
@@ -27,34 +31,70 @@ const Training = () => {
 
   console.log("tasks", tasks);
 
+  const handleChangeTranslation = (e) => {
+    const task = tasks[currentIndex];
+    console.log(task);
+    setTranslation(e.target.value);
+    setAnswer({
+      _id: task._id,
+      en: e.target.value,
+      ua: task.ua,
+      task: task.task,
+    });
+  };
+
+  const handleNextClick = () => {
+    setUserAnswers([...userAnswers, answer]);
+    setTranslation("");
+    setAnswer({});
+    if (currentIndex < tasks.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("userAnswers", userAnswers);
+    dispatch(postAnswersThunk(userAnswers));
+    setTranslation("");
+  };
+
   return (
     <>
       <Container>
         <FormWrapper>
-          <form>
+          <form onSubmit={handleSubmit}>
             <Wrapper>
               <InputBox>
-                <input type="text" name="ua" placeholder="Введіть переклад" />
-                <LabelBox>
-                  <svg>
-                    <use href={`${sprite}#ua`} />
-                  </svg>
-                  <label htmlFor="ua">Ukrainian</label>
-                </LabelBox>
-                <NextBtn type="button">
-                  <p>Next</p>
-                  <svg>
-                    <use href={`${sprite}#arrow-right`} />
-                  </svg>
-                </NextBtn>
-              </InputBox>
-              <Box>
-                <Word>Word</Word>
+                <input
+                  type="text"
+                  name="ua"
+                  placeholder="Введіть переклад"
+                  value={translation}
+                  onChange={handleChangeTranslation}
+                />
                 <LabelBox>
                   <svg>
                     <use href={`${sprite}#en`} />
                   </svg>
                   <label htmlFor="ua">English</label>
+                </LabelBox>
+                {currentIndex !== tasks.length - 1 && (
+                  <NextBtn type="button" onClick={handleNextClick}>
+                    <p>Next</p>
+                    <svg>
+                      <use href={`${sprite}#arrow-right`} />
+                    </svg>
+                  </NextBtn>
+                )}
+              </InputBox>
+              <Box>
+                <Word>{tasks[currentIndex]?.ua}</Word>
+                <LabelBox>
+                  <svg>
+                    <use href={`${sprite}#ua`} />
+                  </svg>
+                  <label htmlFor="ua">Ukrainian</label>
                 </LabelBox>
               </Box>
             </Wrapper>
