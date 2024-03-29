@@ -16,6 +16,9 @@ import {
 const initialState = {
   categories: [],
   words: [],
+  page: null,
+  totalPages: null,
+  perPage: null,
   filtered: [],
   own: [],
   statistics: [],
@@ -57,8 +60,10 @@ export const slice = createSlice({
       .addCase(getSearchWordsThunk.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        state.words = payload;
-        state.filtered = payload;
+        state.words = payload.results;
+        state.totalPages = payload.totalPages;
+        state.page = payload.page;
+        state.perPage = payload.perPage;
       })
       .addCase(getSearchWordsThunk.pending, (state, { payload }) => {
         state.isLoading = true;
@@ -112,8 +117,11 @@ export const slice = createSlice({
       })
       .addCase(getOwnWordsThunk.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.own = [...payload.results];
+        state.own = payload.results;
         state.error = null;
+        state.totalPages = payload.totalPages;
+        state.page = payload.page;
+        state.perPage = payload.perPage;
       })
       .addCase(getOwnWordsThunk.pending, (state, { payload }) => {
         state.isLoading = true;

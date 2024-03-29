@@ -79,7 +79,6 @@ const AddWordForm = ({ onClose }) => {
       ua: wordUa,
       en: wordEn,
     };
-    console.log(formData);
     dispatch(createWordThunk(formData));
     setCategory("");
     setWordUa("");

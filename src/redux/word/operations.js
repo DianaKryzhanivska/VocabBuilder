@@ -34,7 +34,7 @@ export const getSearchWordsThunk = createAsyncThunk(
       const response = await instance.get(
         `/words/all?keyword=${keyword}&category=${category}&page=${page}&limit=${limit}`
       );
-      return response.data.results;
+      return response.data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -48,7 +48,6 @@ export const createWordThunk = createAsyncThunk(
     try {
       const response = await instance.post(`/words/create`, formData);
       toast.success(`Word ${en} successfully added.`);
-      console.log(response);
       return response.data;
     } catch (error) {
       switch (error.response.status) {
@@ -71,7 +70,6 @@ export const deleteWordThunk = createAsyncThunk(
   async (id, { rejectWithValue }) => {
     try {
       const response = await instance.delete(`/words/delete/${id}`);
-      console.log(response);
       toast.success(`This word was deleted`);
       return response.data;
     } catch (error) {
@@ -92,7 +90,6 @@ export const editWordThunk = createAsyncThunk(
   async ({ id, body }, { rejectWithValue }) => {
     try {
       const response = await instance.patch(`/words/edit/${id}`, body);
-      console.log(response);
       return response.data;
     } catch (error) {
       switch (error.response.status) {
@@ -118,7 +115,6 @@ export const getOwnWordsThunk = createAsyncThunk(
       const response = await instance.get(
         `/words/own?keyword=${keyword}&category=${category}&page=${page}&limit=${limit}`
       );
-      console.log(response);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -143,7 +139,6 @@ export const getTasksThunk = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await instance.get("/words/tasks");
-      console.log(response);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -156,7 +151,6 @@ export const postAnswersThunk = createAsyncThunk(
   async (body, { rejectWithValue }) => {
     try {
       const response = await instance.post("/words/answers", body);
-      console.log(response);
       return response.data;
     } catch (error) {
       toast.error(`Something went wrong. Please try again`);
@@ -170,7 +164,7 @@ export const addWordThunk = createAsyncThunk(
   async (id, { rejectWithValue }) => {
     try {
       const response = await instance.post(`/words/add/${id}`);
-      console.log(response);
+      toast.success(`Word ${response.data.en} added to dictionary`);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.message);

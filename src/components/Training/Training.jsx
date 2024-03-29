@@ -35,8 +35,6 @@ const Training = () => {
     dispatch(getTasksThunk());
   }, [dispatch]);
 
-  console.log("tasks", tasks);
-
   const handleOpenModal = () => {
     setOpenModal(true);
   };
@@ -48,7 +46,6 @@ const Training = () => {
 
   const handleChangeTranslationEn = (e) => {
     const task = tasks[currentIndex];
-    console.log(task);
     setTranslationEn(e.target.value);
     setAnswer({
       _id: task._id,
@@ -60,7 +57,6 @@ const Training = () => {
 
   const handleChangeTranslationUa = (e) => {
     const task = tasks[currentIndex];
-    console.log(task);
     setTranslationUa(e.target.value);
     setAnswer({
       _id: task._id,
@@ -82,7 +78,6 @@ const Training = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("userAnswers", userAnswers);
     dispatch(postAnswersThunk(userAnswers));
     setTranslationEn("");
     setTranslationUa("");

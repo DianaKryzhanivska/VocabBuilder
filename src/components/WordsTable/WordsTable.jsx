@@ -1,18 +1,28 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Table from "./Table/Table";
 import { useMediaQuery } from "react-responsive";
 import { useDispatch, useSelector } from "react-redux";
-import { selectAllWords, selectOwnWords } from "../../redux/word/selectors";
+import {
+  selectAllWords,
+  selectOwnWords,
+  selectPerPage,
+  selectTotalPages,
+} from "../../redux/word/selectors";
 import {
   getOwnWordsThunk,
   getSearchWordsThunk,
 } from "../../redux/word/operations";
 import NotFoundWords from "components/Training/NotFoundWords/NotFoundWords";
+import WordsPagination from "components/WordsPagination/WordsPagination";
 
 const WordsTable = ({ pageType }) => {
   const dispatch = useDispatch();
   const own = useSelector(selectOwnWords);
   const allWords = useSelector(selectAllWords);
+  const totalPages = useSelector(selectTotalPages);
+  const perPage = useSelector(selectPerPage);
+  const [currentPage, setCurrentPage] = useState(1);
+
   const isTabletOrDesktop = useMediaQuery({
     query: "(min-width: 768px)",
   });
@@ -23,7 +33,7 @@ const WordsTable = ({ pageType }) => {
         getOwnWordsThunk({
           keyword: "",
           category: "",
-          page: 1,
+          page: currentPage,
           limit: 7,
         })
       );
@@ -32,12 +42,16 @@ const WordsTable = ({ pageType }) => {
         getSearchWordsThunk({
           keyword: "",
           category: "",
-          page: 1,
+          page: currentPage,
           limit: 7,
         })
       );
     }
-  }, [pageType, dispatch]);
+  }, [pageType, dispatch, currentPage]);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
 
   const columns = [
     { Header: "Word", accessor: "en" },
@@ -61,7 +75,17 @@ const WordsTable = ({ pageType }) => {
   return (
     <>
       {tableData?.length > 0 ? (
-        <Table pageType={pageType} columns={columns} data={tableData} />
+        <>
+          <Table pageType={pageType} columns={columns} data={tableData} />
+          {totalPages > 1 && (
+            <WordsPagination
+              onPageChange={handlePageChange}
+              currentPage={currentPage}
+              totalPages={totalPages}
+              perPage={perPage}
+            />
+          )}
+        </>
       ) : (
         <NotFoundWords />
       )}

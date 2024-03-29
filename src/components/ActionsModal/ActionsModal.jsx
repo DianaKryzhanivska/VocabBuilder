@@ -39,7 +39,6 @@ const ActionsModal = ({ isOpen, onClose, wordData }) => {
   };
 
   const handleDeleteWord = (wordId) => {
-    console.log("wordId", wordId);
     dispatch(deleteWordThunk(wordId));
     onClose();
   };

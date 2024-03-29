@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
+  margin-bottom: 32px;
+
   @media only screen and (min-width: 768px) {
     padding: 18px;
     background: #fff;

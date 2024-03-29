@@ -12,7 +12,6 @@ import { useDispatch } from "react-redux";
 import { editWordThunk } from "../../redux/word/operations";
 
 const EditWordForm = ({ onClose, wordData }) => {
-  console.log("wordData: ", wordData);
   const dispatch = useDispatch();
 
   const [wordUa, setWordUa] = useState("");
@@ -36,7 +35,6 @@ const EditWordForm = ({ onClose, wordData }) => {
         category: wordData.category,
       },
     };
-    console.log("editFormData: ", editFormData);
     dispatch(editWordThunk(editFormData));
     onClose();
   };
