@@ -95,8 +95,12 @@ export const slice = createSlice({
       })
       .addCase(editWordThunk.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.words = [payload, ...state.words];
-        state.own = [payload, ...state.own];
+        state.words = state.words.map((word) =>
+          word._id === payload._id ? payload : word
+        );
+        state.own = state.own.map((word) =>
+          word._id === payload._id ? payload : word
+        );
         state.error = null;
       })
       .addCase(editWordThunk.pending, (state, { payload }) => {
