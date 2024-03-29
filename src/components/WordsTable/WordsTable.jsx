@@ -42,11 +42,18 @@ const WordsTable = ({ pageType }) => {
   const columns = [
     { Header: "Word", accessor: "en" },
     { Header: "Translation", accessor: "ua" },
-    { Header: "Progress", accessor: "progress" },
   ];
 
-  if (isTabletOrDesktop) {
+  if (pageType === "dictionary") {
+    columns.splice(2, 0, { Header: "Progress", accessor: "progress" });
+  }
+
+  if (pageType === "dictionary" && isTabletOrDesktop) {
     columns.splice(2, 0, { Header: "Category", accessor: "category" });
+  }
+
+  if (pageType === "recommend") {
+    columns.splice(3, 0, { Header: "Category", accessor: "category" });
   }
 
   const tableData = pageType === "dictionary" ? own : allWords;
