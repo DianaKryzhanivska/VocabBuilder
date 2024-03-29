@@ -54,7 +54,7 @@ const WordsTable = ({ pageType }) => {
   return (
     <>
       {tableData?.length > 0 ? (
-        <Table columns={columns} data={tableData} />
+        <Table pageType={pageType} columns={columns} data={tableData} />
       ) : (
         <NotFoundWords />
       )}

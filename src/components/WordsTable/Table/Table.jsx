@@ -3,6 +3,7 @@ import { useTable } from "react-table";
 import {
   ActionsBtn,
   ActionsBtnContainer,
+  AddToDictionaryBtn,
   BoxWithIcon,
   TableContainer,
   TableItem,
@@ -11,8 +12,12 @@ import {
 import sprite from "../../../images/sprite.svg";
 import { useMediaQuery } from "react-responsive";
 import ActionsModal from "components/ActionsModal/ActionsModal";
+import { useDispatch } from "react-redux";
+import { addWordThunk } from "../../../redux/word/operations";
 
-const Table = ({ columns, data }) => {
+const Table = ({ columns, data, pageType }) => {
+  const dispatch = useDispatch();
+
   const isTabletOrDesktop = useMediaQuery({
     query: "(min-width: 768px)",
   });
@@ -27,6 +32,10 @@ const Table = ({ columns, data }) => {
         return [...prevIds, rowId];
       }
     });
+  };
+
+  const handleAddToDictionary = (wordId) => {
+    dispatch(addWordThunk(wordId));
   };
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
@@ -70,21 +79,35 @@ const Table = ({ columns, data }) => {
                       <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
                     ))}
                     <td>
-                      <ActionsBtnContainer>
-                        <ActionsBtn
+                      {pageType === "dictionary" ? (
+                        <ActionsBtnContainer>
+                          <ActionsBtn
+                            type="button"
+                            onClick={() => toggleIsOpenActionsModal(row.id)}
+                          >
+                            <svg width={12} height={22}>
+                              <use href={`${sprite}#dots`} />
+                            </svg>
+                          </ActionsBtn>
+                          <ActionsModal
+                            isOpen={openActionsModalIds.includes(row.id)}
+                            onClose={() => toggleIsOpenActionsModal(row.id)}
+                            wordData={row.original}
+                          />
+                        </ActionsBtnContainer>
+                      ) : (
+                        <AddToDictionaryBtn
                           type="button"
-                          onClick={() => toggleIsOpenActionsModal(row.id)}
+                          onClick={() =>
+                            handleAddToDictionary(row.original._id)
+                          }
                         >
-                          <svg width={12} height={22}>
-                            <use href={`${sprite}#dots`} />
+                          {isTabletOrDesktop && <p>Add to dictionary</p>}
+                          <svg>
+                            <use href={`${sprite}#arrow-right`} />
                           </svg>
-                        </ActionsBtn>
-                        <ActionsModal
-                          isOpen={openActionsModalIds.includes(row.id)}
-                          onClose={() => toggleIsOpenActionsModal(row.id)}
-                          wordData={row.original}
-                        />
-                      </ActionsBtnContainer>
+                        </AddToDictionaryBtn>
+                      )}
                     </td>
                   </tr>
                 );

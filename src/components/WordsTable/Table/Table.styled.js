@@ -78,3 +78,34 @@ export const ActionsBtnContainer = styled.div`
 export const ActionsBtn = styled.button`
   background: transparent;
 `;
+
+export const AddToDictionaryBtn = styled.button`
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  @media only screen and (min-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+
+    & p {
+      color: ${({ theme }) => theme.colors.black};
+      font-size: 14px;
+      font-weight: 500;
+      text-wrap: nowrap;
+    }
+  }
+
+  @media only screen and (min-width: 1440px) {
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+  }
+`;

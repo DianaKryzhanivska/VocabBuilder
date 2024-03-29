@@ -164,3 +164,16 @@ export const postAnswersThunk = createAsyncThunk(
     }
   }
 );
+
+export const addWordThunk = createAsyncThunk(
+  "words/add",
+  async (id, { rejectWithValue }) => {
+    try {
+      const response = await instance.post(`/words/add/${id}`);
+      console.log(response);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);

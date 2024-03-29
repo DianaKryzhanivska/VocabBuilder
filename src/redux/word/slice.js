@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
+  addWordThunk,
   createWordThunk,
   deleteWordThunk,
   editWordThunk,
@@ -150,6 +151,17 @@ export const slice = createSlice({
         state.isLoading = true;
       })
       .addCase(postAnswersThunk.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      .addCase(addWordThunk.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(addWordThunk.pending, (state, { payload }) => {
+        state.isLoading = true;
+      })
+      .addCase(addWordThunk.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
       });
