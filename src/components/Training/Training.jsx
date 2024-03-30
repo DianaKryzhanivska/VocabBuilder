@@ -8,6 +8,7 @@ import {
   InputUa,
   LabelBox,
   NextBtn,
+  ProgressWrapper,
   SubmitBtn,
   Wrapper,
 } from "./Training.styled";
@@ -19,6 +20,7 @@ import Modal from "../Modal/Modal";
 import WellDoneModal from "components/WellDoneModal/WellDoneModal";
 import { useNavigate } from "react-router-dom";
 import NotFoundWords from "./NotFoundWords/NotFoundWords";
+import ProgressBar from "components/ProgressBar/ProgressBar";
 
 const Training = () => {
   const dispatch = useDispatch();
@@ -92,56 +94,65 @@ const Training = () => {
     <>
       <Container>
         {tasks.length > 0 ? (
-          <FormWrapper>
-            <form onSubmit={handleSubmit}>
-              <Wrapper>
-                <InputEn>
-                  <input
-                    type="text"
-                    name="en"
-                    placeholder={tasks[currentIndex]?.en}
-                    value={translationEn}
-                    onChange={handleChangeTranslationEn}
-                  />
-                  <LabelBox>
-                    <svg>
-                      <use href={`${sprite}#en`} />
-                    </svg>
-                    <label htmlFor="en">English</label>
-                  </LabelBox>
-                  {currentIndex !== tasks.length - 1 && (
-                    <NextBtn type="button" onClick={handleNextClick}>
-                      <p>Next</p>
+          <>
+            <ProgressWrapper>
+              <ProgressBar
+                pageType="training"
+                userAnswers={userAnswers.length}
+                totalTasks={tasks.length}
+              />
+            </ProgressWrapper>
+            <FormWrapper>
+              <form onSubmit={handleSubmit}>
+                <Wrapper>
+                  <InputEn>
+                    <input
+                      type="text"
+                      name="en"
+                      placeholder={tasks[currentIndex]?.en}
+                      value={translationEn}
+                      onChange={handleChangeTranslationEn}
+                    />
+                    <LabelBox>
                       <svg>
-                        <use href={`${sprite}#arrow-right`} />
+                        <use href={`${sprite}#en`} />
                       </svg>
-                    </NextBtn>
-                  )}
-                </InputEn>
-                <InputUa>
-                  <input
-                    type="text"
-                    name="ua"
-                    placeholder={tasks[currentIndex]?.ua}
-                    value={translationUa}
-                    onChange={handleChangeTranslationUa}
-                  />
-                  <LabelBox>
-                    <svg>
-                      <use href={`${sprite}#ua`} />
-                    </svg>
-                    <label htmlFor="ua">Ukrainian</label>
-                  </LabelBox>
-                </InputUa>
-              </Wrapper>
-              <BtnBox>
-                <SubmitBtn type="submit">Save</SubmitBtn>
-                <CancelBtn type="button" onClick={handleCancelClick}>
-                  Cancel
-                </CancelBtn>
-              </BtnBox>
-            </form>
-          </FormWrapper>
+                      <label htmlFor="en">English</label>
+                    </LabelBox>
+                    {currentIndex !== tasks.length - 1 && (
+                      <NextBtn type="button" onClick={handleNextClick}>
+                        <p>Next</p>
+                        <svg>
+                          <use href={`${sprite}#arrow-right`} />
+                        </svg>
+                      </NextBtn>
+                    )}
+                  </InputEn>
+                  <InputUa>
+                    <input
+                      type="text"
+                      name="ua"
+                      placeholder={tasks[currentIndex]?.ua}
+                      value={translationUa}
+                      onChange={handleChangeTranslationUa}
+                    />
+                    <LabelBox>
+                      <svg>
+                        <use href={`${sprite}#ua`} />
+                      </svg>
+                      <label htmlFor="ua">Ukrainian</label>
+                    </LabelBox>
+                  </InputUa>
+                </Wrapper>
+                <BtnBox>
+                  <SubmitBtn type="submit">Save</SubmitBtn>
+                  <CancelBtn type="button" onClick={handleCancelClick}>
+                    Cancel
+                  </CancelBtn>
+                </BtnBox>
+              </form>
+            </FormWrapper>
+          </>
         ) : (
           <NotFoundWords />
         )}

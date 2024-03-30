@@ -4,6 +4,8 @@
   "private": true,
   "homepage": "https://DianaKryzhanivska.github.io/VocabBuilder/",
   "dependencies": {
+    "@emotion/styled": "^11.11.5",
+    "@mui/material": "^5.15.14",
     "@reduxjs/toolkit": "^2.2.2",
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",

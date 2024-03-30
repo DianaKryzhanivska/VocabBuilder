@@ -14,6 +14,7 @@ import { useMediaQuery } from "react-responsive";
 import ActionsModal from "components/ActionsModal/ActionsModal";
 import { useDispatch } from "react-redux";
 import { addWordThunk } from "../../../redux/word/operations";
+import ProgressBar from "components/ProgressBar/ProgressBar";
 
 const Table = ({ columns, data, pageType }) => {
   const dispatch = useDispatch();
@@ -76,7 +77,16 @@ const Table = ({ columns, data, pageType }) => {
                 return (
                   <tr {...row.getRowProps()}>
                     {row.cells.map((cell) => (
-                      <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                      <td {...cell.getCellProps()}>
+                        {cell.column.Header === "Progress" ? (
+                          <ProgressBar
+                            progress={cell.value}
+                            pageType="dictionary"
+                          />
+                        ) : (
+                          cell.render("Cell")
+                        )}
+                      </td>
                     ))}
                     <td>
                       {pageType === "dictionary" ? (

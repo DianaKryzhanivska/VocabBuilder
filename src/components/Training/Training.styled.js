@@ -41,6 +41,17 @@ export const Wrapper = styled.div`
   }
 `;
 
+export const ProgressWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 8px;
+
+  @media only screen and (min-width: 768px) {
+    margin-bottom: 16px;
+  }
+`;
+
 export const InputEn = styled.div`
   position: relative;
 
