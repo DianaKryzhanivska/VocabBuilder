@@ -22,17 +22,9 @@ export const FormWrapper = styled.div`
 export const Wrapper = styled.div`
   margin-bottom: 116px;
 
-  & input {
-    padding: 22px;
-    width: 343px;
-    height: 195px;
-    box-sizing: border-box;
-    border: none;
-    background: ${({ theme }) => theme.colors.white};
-  }
-
   @media only screen and (min-width: 768px) {
     margin-bottom: 40px;
+    font-size: 20px;
   }
 
   @media only screen and (min-width: 1440px) {
@@ -54,26 +46,43 @@ export const ProgressWrapper = styled.div`
 
 export const InputEn = styled.div`
   position: relative;
+  padding: 22px;
+  width: 343px;
+  height: 195px;
+  box-sizing: border-box;
+  border: none;
+  background: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.black};
+  border-radius: 8px 8px 0px 0px;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.tableBorder};
 
   & input {
-    border-radius: 8px 8px 0px 0px;
-    border-bottom: 1px solid ${({ theme }) => theme.colors.tableBorder};
+    border: none;
+    background-color: ${({ theme }) => theme.colors.white};
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5em;
+    outline: none;
+
+    &:focus {
+      border: none;
+    }
   }
 
   @media only screen and (min-width: 768px) {
+    width: 668px;
+    height: 282px;
+
     & input {
-      width: 668px;
-      height: 282px;
+      font-size: 20px;
     }
   }
 
   @media only screen and (min-width: 1440px) {
-    & input {
-      width: 602px;
-      height: 302px;
-      border: none;
-      border-right: 1px solid ${({ theme }) => theme.colors.tableBorder};
-    }
+    width: 602px;
+    height: 302px;
+    border: none;
+    border-right: 1px solid ${({ theme }) => theme.colors.tableBorder};
   }
 `;
 
@@ -137,25 +146,35 @@ export const NextBtn = styled.button`
   }
 `;
 
-export const InputUa = styled.div`
+export const WordBox = styled.div`
   position: relative;
+  padding: 22px;
+  width: 343px;
+  height: 195px;
+  box-sizing: border-box;
+  border: none;
+  color: ${({ theme }) => theme.colors.black};
+  background: ${({ theme }) => theme.colors.white};
+  border-radius: 0px 0px 8px 8px;
 
-  & input {
-    border-radius: 0px 0px 8px 8px;
+  & p {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5em;
   }
 
   @media only screen and (min-width: 768px) {
-    & input {
-      width: 668px;
-      height: 282px;
+    width: 668px;
+    height: 282px;
+
+    & p {
+      font-size: 20px;
     }
   }
 
   @media only screen and (min-width: 1440px) {
-    & input {
-      width: 602px;
-      height: 302px;
-    }
+    width: 602px;
+    height: 302px;
   }
 `;
 

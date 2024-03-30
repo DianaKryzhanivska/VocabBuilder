@@ -24,6 +24,7 @@ const WellDoneModal = () => {
   });
 
   const answers = useSelector(selectAnswers);
+
   const correct = answers.filter((answer) => answer.isDone === true);
   const mistakes = answers.filter((answer) => answer.isDone === false);
   return (

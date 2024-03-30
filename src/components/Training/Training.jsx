@@ -5,11 +5,11 @@ import {
   Container,
   FormWrapper,
   InputEn,
-  InputUa,
   LabelBox,
   NextBtn,
   ProgressWrapper,
   SubmitBtn,
+  WordBox,
   Wrapper,
 } from "./Training.styled";
 import sprite from "../../images/sprite.svg";
@@ -26,11 +26,11 @@ const Training = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const tasks = useSelector(selectTasks);
-  const [translationEn, setTranslationEn] = useState("");
-  const [translationUa, setTranslationUa] = useState("");
+  const [translation, setTranslation] = useState("");
   const [answer, setAnswer] = useState({});
   const [userAnswers, setUserAnswers] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isRequestSent, setIsRequestSent] = useState(false);
   const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
@@ -46,32 +46,21 @@ const Training = () => {
     navigate("/dictionary");
   };
 
-  const handleChangeTranslationEn = (e) => {
+  const handleChangeTranslation = (e) => {
     const task = tasks[currentIndex];
-    setTranslationEn(e.target.value);
-    setAnswer({
+    const newAnswer = {
       _id: task._id,
-      en: e.target.value,
-      ua: task.ua,
+      en: task.task === "en" ? e.target.value : task.en,
+      ua: task.task === "ua" ? e.target.value : task.ua,
       task: task.task,
-    });
-  };
-
-  const handleChangeTranslationUa = (e) => {
-    const task = tasks[currentIndex];
-    setTranslationUa(e.target.value);
-    setAnswer({
-      _id: task._id,
-      en: task.en,
-      ua: e.target.value,
-      task: task.task,
-    });
+    };
+    setTranslation(e.target.value);
+    setAnswer(newAnswer);
   };
 
   const handleNextClick = () => {
-    setUserAnswers([...userAnswers, answer]);
-    setTranslationEn("");
-    setTranslationUa("");
+    setUserAnswers((prevAnswers) => [...prevAnswers, answer]);
+    setTranslation("");
     setAnswer({});
     if (currentIndex < tasks.length - 1) {
       setCurrentIndex(currentIndex + 1);
@@ -80,10 +69,19 @@ const Training = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(postAnswersThunk(userAnswers));
-    setTranslationEn("");
-    setTranslationUa("");
-    handleOpenModal();
+    if (answer) {
+      setUserAnswers((prevAnswers) => [...prevAnswers, answer]);
+    }
+    dispatch(postAnswersThunk([...userAnswers, answer]))
+      .then(() => {
+        setIsRequestSent(true);
+        setTranslation("");
+        setAnswer({});
+        handleOpenModal();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   const handleCancelClick = () => {
@@ -108,17 +106,26 @@ const Training = () => {
                   <InputEn>
                     <input
                       type="text"
-                      name="en"
-                      placeholder={tasks[currentIndex]?.en}
-                      value={translationEn}
-                      onChange={handleChangeTranslationEn}
+                      name="word"
+                      placeholder="Введіть переклад"
+                      value={translation}
+                      onChange={handleChangeTranslation}
                     />
-                    <LabelBox>
-                      <svg>
-                        <use href={`${sprite}#en`} />
-                      </svg>
-                      <label htmlFor="en">English</label>
-                    </LabelBox>
+                    {tasks[currentIndex]?.task === "en" ? (
+                      <LabelBox>
+                        <svg>
+                          <use href={`${sprite}#en`} />
+                        </svg>
+                        <label htmlFor="en">English</label>
+                      </LabelBox>
+                    ) : (
+                      <LabelBox>
+                        <svg>
+                          <use href={`${sprite}#ua`} />
+                        </svg>
+                        <label htmlFor="ua">Ukrainian</label>
+                      </LabelBox>
+                    )}
                     {currentIndex !== tasks.length - 1 && (
                       <NextBtn type="button" onClick={handleNextClick}>
                         <p>Next</p>
@@ -128,21 +135,28 @@ const Training = () => {
                       </NextBtn>
                     )}
                   </InputEn>
-                  <InputUa>
-                    <input
-                      type="text"
-                      name="ua"
-                      placeholder={tasks[currentIndex]?.ua}
-                      value={translationUa}
-                      onChange={handleChangeTranslationUa}
-                    />
-                    <LabelBox>
-                      <svg>
-                        <use href={`${sprite}#ua`} />
-                      </svg>
-                      <label htmlFor="ua">Ukrainian</label>
-                    </LabelBox>
-                  </InputUa>
+                  <WordBox>
+                    {tasks[currentIndex]?.task === "en" ? (
+                      <p>{tasks[currentIndex].ua}</p>
+                    ) : (
+                      <p>{tasks[currentIndex].en}</p>
+                    )}
+                    {tasks[currentIndex]?.task === "en" ? (
+                      <LabelBox>
+                        <svg>
+                          <use href={`${sprite}#ua`} />
+                        </svg>
+                        <label htmlFor="ua">Ukrainian</label>
+                      </LabelBox>
+                    ) : (
+                      <LabelBox>
+                        <svg>
+                          <use href={`${sprite}#en`} />
+                          <label htmlFor="en">English</label>
+                        </svg>
+                      </LabelBox>
+                    )}
+                  </WordBox>
                 </Wrapper>
                 <BtnBox>
                   <SubmitBtn type="submit">Save</SubmitBtn>
@@ -157,7 +171,7 @@ const Training = () => {
           <NotFoundWords />
         )}
       </Container>
-      <Modal isOpen={openModal} onClose={handleCloseModal}>
+      <Modal isOpen={openModal && isRequestSent} onClose={handleCloseModal}>
         <WellDoneModal onClose={handleCloseModal} />
       </Modal>
     </>
