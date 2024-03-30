@@ -12,5 +12,6 @@ export const theme = {
     borderLightGray: "#D1D5DB",
     borderLightWhite: "rgba(252, 252, 252, 0.40)",
     modalSubTitle: "rgba(252, 252, 252, 0.50)",
+    hover: "#A5C0B8",
   },
 };

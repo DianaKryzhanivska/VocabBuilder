@@ -128,6 +128,12 @@ export const SubmitBtn = styled.button`
   font-size: 16px;
   font-weight: 700;
   line-height: 1.5em;
+  transition: transform(0.2s);
+
+  &:hover {
+    transform: scale(1.05);
+    color: ${({ theme }) => theme.colors.green};
+  }
 
   @media only screen and (min-width: 768px) {
     padding: 14px 104px;
@@ -144,6 +150,13 @@ export const CancelBtn = styled.button`
   font-size: 16px;
   font-weight: 700;
   line-height: 1.5em;
+  transition: transform(0.2s);
+
+  &:hover {
+    transform: scale(1.05);
+    color: ${({ theme }) => theme.colors.black};
+    background: ${({ theme }) => theme.colors.white};
+  }
 
   @media only screen and (min-width: 768px) {
     padding: 14px 92px;

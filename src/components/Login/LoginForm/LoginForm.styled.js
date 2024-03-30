@@ -90,6 +90,12 @@ export const SubmitBtn = styled.button`
   font-weight: 700;
   line-height: 1.5em;
   margin-bottom: 16px;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: scale(1.1);
+    background: ${({ theme }) => theme.colors.hover};
+  }
 
   @media only screen and (min-width: 320px) and (max-width: 374px) {
     padding: 16px 120px;
@@ -108,4 +114,10 @@ export const RegisterLink = styled.div`
   line-height: 1.5em;
   text-decoration: underline;
   text-align: center;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: scale(1.1);
+    color: ${({ theme }) => theme.colors.black};
+  }
 `;

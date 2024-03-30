@@ -93,6 +93,12 @@ export const SubmitBtn = styled.button`
   padding: 12px 60px;
   background: ${({ theme }) => theme.colors.white};
   color: ${({ theme }) => theme.colors.black};
+  transition: transform(0.2s);
+
+  &:hover {
+    transform: scale(1.05);
+    color: ${({ theme }) => theme.colors.green};
+  }
 
   @media only screen and (min-width: 768px) {
     padding: 14px 101px;
@@ -104,6 +110,13 @@ export const CancelBtn = styled.button`
   border: 1px solid ${({ theme }) => theme.colors.borderLightWhite};
   background: transparent;
   color: ${({ theme }) => theme.colors.white};
+  transition: transform(0.2s);
+
+  &:hover {
+    transform: scale(1.05);
+    background: ${({ theme }) => theme.colors.white};
+    color: ${({ theme }) => theme.colors.black};
+  }
 
   @media only screen and (min-width: 768px) {
     padding: 14px 92px;

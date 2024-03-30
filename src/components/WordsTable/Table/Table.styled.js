@@ -102,6 +102,10 @@ export const AddToDictionaryBtn = styled.button`
       font-size: 14px;
       font-weight: 500;
       text-wrap: nowrap;
+
+      &:hover {
+        color: ${({ theme }) => theme.colors.green};
+      }
     }
   }
 

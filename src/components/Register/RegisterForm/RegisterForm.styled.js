@@ -103,6 +103,12 @@ export const SubmitBtn = styled.button`
   font-size: 16px;
   font-weight: 700;
   line-height: 1.5em;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: scale(1.1);
+    background: ${({ theme }) => theme.colors.hover};
+  }
 
   @media only screen and (min-width: 768px) {
     font-size: 18px;
@@ -118,4 +124,10 @@ export const LoginLink = styled.div`
   text-decoration: underline;
   display: flex;
   justify-content: center;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: scale(1.1);
+    color: ${({ theme }) => theme.colors.black};
+  }
 `;

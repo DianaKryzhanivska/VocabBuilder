@@ -32,6 +32,7 @@ ul {
 a {
   color: currentColor;
   text-decoration: none;
+  cursor: pointer;
 }
 
 button {

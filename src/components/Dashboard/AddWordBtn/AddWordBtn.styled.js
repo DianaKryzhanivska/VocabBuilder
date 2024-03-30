@@ -21,6 +21,10 @@ export const Btn = styled.button`
     font-size: 16px;
     font-weight: 500;
     line-height: 1.5em;
+
+    &:hover {
+      color: ${({ theme }) => theme.colors.green};
+    }
   }
 
   & svg {
@@ -38,6 +42,12 @@ export const TrainingLink = styled.div`
   font-size: 16px;
   font-weight: 500;
   line-height: 1.5em;
+
+  & a {
+    &:hover {
+      color: ${({ theme }) => theme.colors.green};
+    }
+  }
 
   & svg {
     width: 20px;

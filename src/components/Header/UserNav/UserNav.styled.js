@@ -5,6 +5,14 @@ export const NavBox = styled.ul`
   flex-direction: column;
   gap: 28px;
 
+  & li {
+    transition: transform(0.2s);
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
   & a {
     color: ${({ theme }) => theme.colors.white};
     font-size: 14px;
