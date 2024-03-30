@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   selectAllWords,
   selectOwnWords,
-  selectPerPage,
   selectTotalPages,
 } from "../../redux/word/selectors";
 import {
@@ -20,7 +19,6 @@ const WordsTable = ({ pageType }) => {
   const own = useSelector(selectOwnWords);
   const allWords = useSelector(selectAllWords);
   const totalPages = useSelector(selectTotalPages);
-  const perPage = useSelector(selectPerPage);
   const [currentPage, setCurrentPage] = useState(1);
 
   const isTabletOrDesktop = useMediaQuery({
@@ -82,7 +80,6 @@ const WordsTable = ({ pageType }) => {
               onPageChange={handlePageChange}
               currentPage={currentPage}
               totalPages={totalPages}
-              perPage={perPage}
             />
           )}
         </>

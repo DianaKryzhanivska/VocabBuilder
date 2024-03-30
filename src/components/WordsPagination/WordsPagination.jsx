@@ -3,12 +3,7 @@ import { useMediaQuery } from "react-responsive";
 import sprite from "../../images/sprite.svg";
 import { Btn, Wrapper } from "./WordsPagination.styled";
 
-const WordsPagination = ({
-  currentPage,
-  totalPages,
-  perPage,
-  onPageChange,
-}) => {
+const WordsPagination = ({ currentPage, totalPages, onPageChange }) => {
   const isTabletOrDesktop = useMediaQuery({
     query: "(min-width: 768px)",
   });
@@ -23,69 +18,46 @@ const WordsPagination = ({
 
   const renderPageButtons = () => {
     const buttons = [];
-    const maxButtons = isTabletOrDesktop ? 3 : 2;
+    let maxButtons;
 
-    if (totalPages <= maxButtons) {
-      for (let i = 1; i <= totalPages; i++) {
-        buttons.push(
-          <Btn
-            key={`btn-${i}`}
-            type="button"
-            onClick={() => onPageChange(i)}
-            disabled={i === currentPage}
-            style={{
-              backgroundColor: i === currentPage ? "#85AA9F" : "white",
-              color: i === currentPage ? "#FFF" : "#121417",
-            }}
-          >
-            {i}
-          </Btn>
-        );
-      }
+    if (isTabletOrDesktop) {
+      maxButtons = totalPages > 4 ? 4 : totalPages;
     } else {
-      for (let i = 1; i <= maxButtons; i++) {
-        buttons.push(
-          <Btn
-            key={`btn-${i}`}
-            type="button"
-            onClick={() => onPageChange(i)}
-            disabled={i === currentPage}
-            style={{
-              backgroundColor: i === currentPage ? "#85AA9F" : "white",
-              color: i === currentPage ? "#FFF" : "#121417",
-            }}
-          >
-            {i}
-          </Btn>
-        );
-      }
+      maxButtons = totalPages > 3 ? 3 : totalPages;
+    }
 
-      if (totalPages > maxButtons + 2) {
-        buttons.push(
-          <Btn key="dots" type="button">
-            <svg>
-              <use href={`${sprite}#dots`} />
-            </svg>
-          </Btn>
-        );
-      }
+    let startPage = 1;
+    let endPage = totalPages;
 
-      for (let i = totalPages - maxButtons + 2; i <= totalPages; i++) {
-        buttons.push(
-          <Btn
-            key={`btn-${i}`}
-            type="button"
-            onClick={() => onPageChange(i)}
-            disabled={i === currentPage}
-            style={{
-              backgroundColor: i === currentPage ? "#85AA9F" : "white",
-              color: i === currentPage ? "#FFF" : "#121417",
-            }}
-          >
-            {i}
-          </Btn>
-        );
+    if (totalPages > maxButtons) {
+      startPage = Math.max(currentPage - Math.floor(maxButtons / 2), 1);
+      endPage = startPage + maxButtons - 1;
+
+      if (endPage > totalPages) {
+        endPage = totalPages;
+        startPage = Math.max(totalPages - maxButtons + 1, 1);
       }
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+      buttons.push(
+        <Btn
+          key={`btn-${i}`}
+          type="button"
+          onClick={() => onPageChange(i)}
+          disabled={i === currentPage}
+          style={{
+            backgroundColor: i === currentPage ? "#85AA9F" : "white",
+            color: i === currentPage ? "#FFF" : "#121417",
+            padding: "8px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          {i}
+        </Btn>
+      );
     }
 
     return buttons;
