@@ -167,6 +167,13 @@ export const addWordThunk = createAsyncThunk(
       toast.success(`Word ${response.data.en} added to dictionary`);
       return response.data;
     } catch (error) {
+      switch (error.response.status) {
+        case 409:
+          toast.error(`Such a word exists`);
+          break;
+        default:
+          toast.error(`Something went wrong. Please try again`);
+      }
       return rejectWithValue(error.message);
     }
   }

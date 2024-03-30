@@ -33,6 +33,10 @@ const WordsPagination = ({
             type="button"
             onClick={() => onPageChange(i)}
             disabled={i === currentPage}
+            style={{
+              backgroundColor: i === currentPage ? "#85AA9F" : "white",
+              color: i === currentPage ? "#FFF" : "#121417",
+            }}
           >
             {i}
           </Btn>
@@ -46,6 +50,10 @@ const WordsPagination = ({
             type="button"
             onClick={() => onPageChange(i)}
             disabled={i === currentPage}
+            style={{
+              backgroundColor: i === currentPage ? "#85AA9F" : "white",
+              color: i === currentPage ? "#FFF" : "#121417",
+            }}
           >
             {i}
           </Btn>
@@ -69,6 +77,10 @@ const WordsPagination = ({
             type="button"
             onClick={() => onPageChange(i)}
             disabled={i === currentPage}
+            style={{
+              backgroundColor: i === currentPage ? "#85AA9F" : "white",
+              color: i === currentPage ? "#FFF" : "#121417",
+            }}
           >
             {i}
           </Btn>
