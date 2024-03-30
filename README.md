@@ -6,7 +6,7 @@
 
 ![image](https://github.com/DianaKryzhanivska/VocabBuilder/blob/main/login.png)
 
-![image](https://github.com/DianaKryzhanivska/VocabBuilder/blob/main/recomend.png)
+![image](https://github.com/DianaKryzhanivska/VocabBuilder/blob/main/recommend.png)
 
 ![image](https://github.com/DianaKryzhanivska/VocabBuilder/blob/main/add.png)
 
