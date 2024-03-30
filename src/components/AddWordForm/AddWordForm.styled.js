@@ -32,12 +32,43 @@ export const Text = styled.p`
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
+`;
+
+export const SelectWrapper = styled.div`
+  @media only screen and (min-width: 768px) {
+    width: 204px;
+  }
+`;
+
+export const VerbTypeBox = styled.div`
+  display: flex;
+  gap: 16px;
+  align-items: center;
 
   & label {
     color: ${({ theme }) => theme.colors.white};
-    font-size: 14px;
-    font-weight: 500;
+    display: flex;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 400;
   }
+
+  & input {
+    border: none;
+    cursor: pointer;
+  }
+
+  @media only screen and (min-width: 768px) {
+    font-size: 16px;
+  }
+`;
+
+export const InputBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 32px;
+  margin-bottom: 32px;
 
   & input {
     width: 100%;
@@ -52,7 +83,14 @@ export const Form = styled.form`
     line-height: 1.5em;
   }
 
+  & label {
+    color: ${({ theme }) => theme.colors.white};
+    font-size: 14px;
+    font-weight: 500;
+  }
+
   @media only screen and (min-width: 768px) {
+    margin-top: 38px;
     & label {
       font-size: 16px;
       line-height: 1.5em;
@@ -64,19 +102,6 @@ export const Form = styled.form`
       font-weight: 400;
     }
   }
-`;
-
-export const SelectWrapper = styled.div`
-  @media only screen and (min-width: 768px) {
-    width: 204px;
-  }
-`;
-
-export const InputBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-bottom: 32px;
 
   @media only screen and (min-width: 1440px) {
     gap: 18px;

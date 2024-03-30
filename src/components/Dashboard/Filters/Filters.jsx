@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import sprite from "../../../images/sprite.svg";
-import { Form, InputWithIcon } from "./Filters.styled";
+import { Form, InputWithIcon, VerbTypeBox } from "./Filters.styled";
 import Select from "react-select";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -49,6 +49,7 @@ const Filters = ({ pageType }) => {
   const categories = useSelector(selectCategories);
   const [searchedKeyWord, setSearchedKeyWord] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [isIrregularVerb, setIsIrregularVerb] = useState(false);
 
   useEffect(() => {
     dispatch(getCategoriesThunk());
@@ -61,6 +62,9 @@ const Filters = ({ pageType }) => {
         category: selectedCategory.value,
         page: 1,
         limit: 7,
+        ...(selectedCategory.value === "verb" && {
+          isIrregular: isIrregularVerb,
+        }),
       };
       if (pageType === "dictionary") {
         dispatch(getOwnWordsThunk(searchedWords));
@@ -68,7 +72,7 @@ const Filters = ({ pageType }) => {
         dispatch(getSearchWordsThunk(searchedWords));
       }
     }
-  }, [searchedKeyWord, selectedCategory, pageType, dispatch]);
+  }, [searchedKeyWord, selectedCategory, isIrregularVerb, pageType, dispatch]);
 
   const options = [
     { value: "", label: "All" },
@@ -113,6 +117,30 @@ const Filters = ({ pageType }) => {
           onChange={setSelectedCategory}
           value={selectedCategory}
         />
+        {selectedCategory.value === "verb" && (
+          <VerbTypeBox>
+            <label htmlFor="regular">
+              <input
+                type="radio"
+                id="regular"
+                name="verbType"
+                checked={!isIrregularVerb}
+                onChange={() => setIsIrregularVerb(false)}
+              />
+              Regular
+            </label>
+            <label htmlFor="irregular">
+              <input
+                type="radio"
+                id="irregular"
+                name="verbType"
+                checked={isIrregularVerb}
+                onChange={() => setIsIrregularVerb(true)}
+              />
+              Irregular
+            </label>
+          </VerbTypeBox>
+        )}
         <button type="submit" style={{ display: "none" }}></button>
       </Form>
     </>

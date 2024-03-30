@@ -10,6 +10,7 @@ import {
   SubmitBtn,
   Text,
   Title,
+  VerbTypeBox,
 } from "./AddWordForm.styled";
 import Select from "react-select";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,7 +21,7 @@ import { createWordThunk } from "../../redux/word/operations";
 const customStyles = {
   container: (baseStyles, state) => ({
     ...baseStyles,
-    marginBottom: "32px",
+    marginBottom: "8px",
   }),
   control: (baseStyles, state) => ({
     ...baseStyles,
@@ -69,16 +70,20 @@ const AddWordForm = ({ onClose }) => {
   }));
 
   const [category, setCategory] = useState("");
+  const [isIrregularVerb, setIsIrregularVerb] = useState(false);
   const [wordUa, setWordUa] = useState("");
   const [wordEn, setWordEn] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const formData = {
       category: category.value,
       ua: wordUa,
       en: wordEn,
+      ...(category.value === "verb" && { isIrregular: isIrregularVerb }),
     };
+
     dispatch(createWordThunk(formData));
     setCategory("");
     setWordUa("");
@@ -102,6 +107,30 @@ const AddWordForm = ({ onClose }) => {
             value={category}
           />
         </SelectWrapper>
+        {category.value === "verb" && (
+          <VerbTypeBox>
+            <label htmlFor="regular">
+              <input
+                type="radio"
+                id="regular"
+                name="verbType"
+                checked={!isIrregularVerb}
+                onChange={() => setIsIrregularVerb(false)}
+              />
+              Regular
+            </label>
+            <label htmlFor="irregular">
+              <input
+                type="radio"
+                id="irregular"
+                name="verbType"
+                checked={isIrregularVerb}
+                onChange={() => setIsIrregularVerb(true)}
+              />
+              Irregular
+            </label>
+          </VerbTypeBox>
+        )}
         <InputBox>
           <Item>
             <LabelBox>

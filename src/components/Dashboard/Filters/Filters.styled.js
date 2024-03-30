@@ -6,6 +6,41 @@ export const Form = styled.form`
   gap: 8px;
   margin-bottom: 40px;
 
+  @media only screen and (min-width: 768px) {
+    flex-direction: row;
+    margin-bottom: 28px;
+  }
+`;
+
+export const VerbTypeBox = styled.div`
+  display: flex;
+  gap: 16px;
+  align-items: center;
+
+  & label {
+    color: ${({ theme }) => theme.colors.black};
+    display: flex;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+  & input {
+    border: none;
+    cursor: pointer;
+  }
+
+  @media only screen and (min-width: 768px) {
+    & label {
+      font-size: 14px;
+    }
+  }
+`;
+
+export const InputWithIcon = styled.div`
+  position: relative;
+  display: grid;
+
   & input {
     padding: 12px 24px;
     border-radius: 15px;
@@ -16,16 +51,6 @@ export const Form = styled.form`
     line-height: 1.5em;
     background: ${({ theme }) => theme.colors.background};
   }
-
-  @media only screen and (min-width: 768px) {
-    flex-direction: row;
-    margin-bottom: 28px;
-  }
-`;
-
-export const InputWithIcon = styled.div`
-  position: relative;
-  display: grid;
 
   & svg {
     position: absolute;

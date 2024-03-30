@@ -29,10 +29,16 @@ export const getAllWordsThunk = createAsyncThunk(
 export const getSearchWordsThunk = createAsyncThunk(
   "words/search",
   async (body, { rejectWithValue }) => {
-    const { keyword = "", category = "", page = "", limit = "" } = body;
+    const {
+      keyword = "",
+      category = "",
+      isIrregular = "",
+      page = "",
+      limit = "",
+    } = body;
     try {
       const response = await instance.get(
-        `/words/all?keyword=${keyword}&category=${category}&page=${page}&limit=${limit}`
+        `/words/all?keyword=${keyword}&category=${category}&isIrregular=${isIrregular}&page=${page}&limit=${limit}`
       );
       return response.data;
     } catch (error) {
@@ -111,9 +117,15 @@ export const getOwnWordsThunk = createAsyncThunk(
   "words/own",
   async (params, { rejectWithValue }) => {
     try {
-      const { keyword = "", category = "", page = "", limit = "" } = params;
+      const {
+        keyword = "",
+        category = "",
+        isIrregular = "",
+        page = "",
+        limit = "",
+      } = params;
       const response = await instance.get(
-        `/words/own?keyword=${keyword}&category=${category}&page=${page}&limit=${limit}`
+        `/words/own?keyword=${keyword}&category=${category}&isIrregular=${isIrregular}&page=${page}&limit=${limit}`
       );
       return response.data;
     } catch (error) {
