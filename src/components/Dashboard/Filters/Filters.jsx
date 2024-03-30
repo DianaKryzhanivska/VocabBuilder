@@ -49,13 +49,34 @@ const Filters = ({ pageType }) => {
   const categories = useSelector(selectCategories);
   const [searchedKeyWord, setSearchedKeyWord] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
+
   useEffect(() => {
     dispatch(getCategoriesThunk());
   }, [dispatch]);
-  const options = categories?.map((category) => ({
-    value: category,
-    label: category,
-  }));
+
+  useEffect(() => {
+    if (searchedKeyWord.trim() !== "" || selectedCategory) {
+      const searchedWords = {
+        keyword: searchedKeyWord,
+        category: selectedCategory.value,
+        page: 1,
+        limit: 7,
+      };
+      if (pageType === "dictionary") {
+        dispatch(getOwnWordsThunk(searchedWords));
+      } else if (pageType === "recommend") {
+        dispatch(getSearchWordsThunk(searchedWords));
+      }
+    }
+  }, [searchedKeyWord, selectedCategory, pageType, dispatch]);
+
+  const options = [
+    { value: "", label: "All" },
+    ...categories?.map((category) => ({
+      value: category,
+      label: category,
+    })),
+  ];
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -70,8 +91,6 @@ const Filters = ({ pageType }) => {
     } else if (pageType === "recommend") {
       dispatch(getSearchWordsThunk(searchedWords));
     }
-    setSearchedKeyWord("");
-    setSelectedCategory("");
   };
   return (
     <>
