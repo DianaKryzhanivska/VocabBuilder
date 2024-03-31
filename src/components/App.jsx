@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import { currentUserThunk } from "../redux/auth/operations";
 import { selectIsRefresh } from "../redux/auth/selectors";
 import PrivateRoute from "routes/PrivateRoute";
+import NotFoundPage from "pages/NotFoundPage";
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -55,6 +56,7 @@ export const App = () => {
               }
             />
           </Route>
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       )}
     </>
