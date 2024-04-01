@@ -47,7 +47,7 @@ export const ProgressWrapper = styled.div`
 export const InputEn = styled.div`
   position: relative;
   padding: 22px;
-  width: 343px;
+  width: 100%;
   height: 195px;
   box-sizing: border-box;
   border: none;
@@ -69,12 +69,7 @@ export const InputEn = styled.div`
     }
   }
 
-  @media only screen and (max-width: 374px) {
-    width: 305px;
-  }
-
   @media only screen and (min-width: 768px) {
-    width: 668px;
     height: 282px;
 
     & input {
@@ -83,7 +78,6 @@ export const InputEn = styled.div`
   }
 
   @media only screen and (min-width: 1440px) {
-    width: 602px;
     height: 302px;
     border: none;
     border-right: 1px solid ${({ theme }) => theme.colors.tableBorder};
@@ -153,7 +147,7 @@ export const NextBtn = styled.button`
 export const WordBox = styled.div`
   position: relative;
   padding: 22px;
-  width: 343px;
+  width: 100%;
   height: 195px;
   box-sizing: border-box;
   border: none;
@@ -167,12 +161,7 @@ export const WordBox = styled.div`
     line-height: 1.5em;
   }
 
-  @media only screen and (max-width: 374px) {
-    width: 305px;
-  }
-
   @media only screen and (min-width: 768px) {
-    width: 668px;
     height: 282px;
 
     & p {
@@ -181,7 +170,6 @@ export const WordBox = styled.div`
   }
 
   @media only screen and (min-width: 1440px) {
-    width: 602px;
     height: 302px;
   }
 `;
