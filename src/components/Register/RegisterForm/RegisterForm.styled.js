@@ -34,7 +34,6 @@ export const Title = styled.h2`
 `;
 
 export const Desc = styled.p`
-  width: 340px;
   color: ${({ theme }) => theme.colors.lightBlack};
   font-size: 16px;
   font-weight: 400;
@@ -49,8 +48,6 @@ export const Desc = styled.p`
 `;
 
 export const Form = styled.form`
-  width: 343px;
-
   @media only screen and (min-width: 768px) {
     width: 500px;
   }
@@ -104,6 +101,8 @@ export const SubmitBtn = styled.button`
   font-weight: 700;
   line-height: 1.5em;
   transition: transform 0.2s;
+  display: flex;
+  justify-content: center;
 
   &:hover {
     transform: scale(1.1);

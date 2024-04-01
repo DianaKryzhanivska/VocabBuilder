@@ -52,6 +52,11 @@ export const CommonContainer = styled.div`
   padding-left: 16px;
   padding-right: 16px;
 
+  @media only screen and (max-width: 374px) {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
   @media only screen and (min-width: 768px) {
     padding-left: 32px;
     padding-right: 32px;

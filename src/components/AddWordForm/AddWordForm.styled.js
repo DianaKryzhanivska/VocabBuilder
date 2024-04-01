@@ -160,6 +160,10 @@ export const SubmitBtn = styled.button`
     color: ${({ theme }) => theme.colors.green};
   }
 
+  @media only screen and (max-width: 374px) {
+    padding: 12px 58px;
+  }
+
   @media only screen and (min-width: 768px) {
     padding: 14px 104px;
     font-size: 18px;
@@ -181,6 +185,10 @@ export const CancelBtn = styled.button`
     transform: scale(1.05);
     color: ${({ theme }) => theme.colors.black};
     background: ${({ theme }) => theme.colors.white};
+  }
+
+  @media only screen and (max-width: 374px) {
+    padding: 12px 40px;
   }
 
   @media only screen and (min-width: 768px) {

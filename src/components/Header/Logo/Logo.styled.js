@@ -11,6 +11,10 @@ export const LogoBox = styled.div`
     height: 36px;
   }
 
+  @media only screen and (max-width: 374px) {
+    gap: 0;
+  }
+
   @media only screen and (min-width: 768px) {
     & svg {
       width: 40px;

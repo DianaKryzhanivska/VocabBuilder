@@ -37,6 +37,16 @@ export const UserIcon = styled.div`
     opacity: 0.7;
   }
 
+  @media only screen and (max-width: 374px) {
+    width: 26px;
+    height: 26px;
+
+    & svg {
+      width: 15px;
+      height: 15px;
+    }
+  }
+
   @media only screen and (min-width: 768px) {
     width: 48px;
     height: 48px;

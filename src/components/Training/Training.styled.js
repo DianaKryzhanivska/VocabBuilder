@@ -69,6 +69,10 @@ export const InputEn = styled.div`
     }
   }
 
+  @media only screen and (max-width: 374px) {
+    width: 305px;
+  }
+
   @media only screen and (min-width: 768px) {
     width: 668px;
     height: 282px;
@@ -163,6 +167,10 @@ export const WordBox = styled.div`
     line-height: 1.5em;
   }
 
+  @media only screen and (max-width: 374px) {
+    width: 305px;
+  }
+
   @media only screen and (min-width: 768px) {
     width: 668px;
     height: 282px;
@@ -214,6 +222,8 @@ export const SubmitBtn = styled.button`
   font-weight: 700;
   line-height: 1.5em;
   transition: transform 0.2s;
+  display: flex;
+  justify-content: center;
 
   &:hover {
     transform: scale(1.05);

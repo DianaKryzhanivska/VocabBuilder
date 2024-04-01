@@ -19,6 +19,12 @@ export const InputBox = styled.div`
     line-height: 1.5em;
   }
 
+  @media only screen and (max-width: 374px) {
+    & input {
+      width: 288px;
+    }
+  }
+
   @media only screen and (min-width: 768px) {
     gap: 18px;
     margin-top: 16px;
@@ -100,6 +106,10 @@ export const SubmitBtn = styled.button`
     color: ${({ theme }) => theme.colors.green};
   }
 
+  @media only screen and (max-width: 374px) {
+    padding: 12px 55px;
+  }
+
   @media only screen and (min-width: 768px) {
     padding: 14px 101px;
   }
@@ -116,6 +126,10 @@ export const CancelBtn = styled.button`
     transform: scale(1.05);
     background: ${({ theme }) => theme.colors.white};
     color: ${({ theme }) => theme.colors.black};
+  }
+
+  @media only screen and (max-width: 374px) {
+    padding: 12px 40px;
   }
 
   @media only screen and (min-width: 768px) {
