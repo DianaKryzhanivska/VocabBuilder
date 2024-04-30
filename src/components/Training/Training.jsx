@@ -59,7 +59,9 @@ const Training = () => {
   };
 
   const handleNextClick = () => {
-    setUserAnswers((prevAnswers) => [...prevAnswers, answer]);
+    if (translation.trim() !== "") {
+      setUserAnswers((prevAnswers) => [...prevAnswers, answer]);
+    }
     setTranslation("");
     setAnswer({});
     if (currentIndex < tasks.length - 1) {
